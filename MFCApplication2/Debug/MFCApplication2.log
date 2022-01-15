@@ -1,9 +1,0 @@
-﻿  stdafx.cpp
-  MFCApplication2.cpp
-c:\users\thdms\onedrive\문서\visual studio 2015\projects\winter-vacation-2022\mfcapplication2\mfcapplication2.cpp(72): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(205): note: 'fopen' 선언을 참조하십시오.
-  MainFrm.cpp
-  ChildView.cpp
-  코드를 생성하고 있습니다...
-  MFCApplication2.vcxproj -> C:\Users\thdms\OneDrive\문서\Visual Studio 2015\Projects\Winter-vacation-2022\MFCApplication2\Debug\MFCApplication2.exe
-  MFCApplication2.vcxproj -> C:\Users\thdms\OneDrive\문서\Visual Studio 2015\Projects\Winter-vacation-2022\MFCApplication2\Debug\MFCApplication2.pdb (Partial PDB)
