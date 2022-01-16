@@ -5,12 +5,35 @@
 <summary> 입출력 </summary>
 <div markdown="1">
   
+- Scanner 객체
+   - java.util.Scanner 클래스
+   - import문 필요
+      - 소스 맨 앞줄에 선언
+ - Scanner에서 키 입력 받기
+   - Scanner는 입력되는 키 값을 공백으로 구분되는 아이템 단위로 읽음
+   - 공백 문자 : '\t', '\f', '\r', '\n'
+ - 개발자가 원하는 다양한 타입으로 쉽게 읽을 수 있음
+  
+| 메소드 | 설명 |    
+| :---: | :----: |    
+| String next() | 다음 아이템을 문자열 타입으로 리턴한다. |    
+| String nextByte() | 다음 아이템을 byte 타입으로 리턴한다. |
+| String nextShort() | 다음 아이템을 short 타입으로 리턴한다. |
+| int nextInt() | 다음 아이템을 int 타입으로 리턴한다. |
+| long nextLong() | 다음 아이템을 long 타입으로 리턴한다. |
+| float nextFloat() | 다음 아이템을 float 타입으로 리턴한다. |
+| double nexxtDouble() | 다음 아이템을 double 타입으로 리턴한다. |
+| String nextLine() | 한 라인 전체('\n')를 읽어 문자열 타입('\n 미포함')으로 리턴한다. |
+  
+boolean hasNext(): 키가 입력될 때까지 기다리며, 입력된 키가 있는 경우 true 리턴. 라인의 첫 문자로 crtl-z 키가 입력되는 false 리턴
+
 ## 📝1.1
   - 키보드에서 영문자를 한 글자씩 입력 받아 소문자이면 대문자로, 대문자이면 소문자로 변환하여 출력하는 프로그램 작성.
     - 참고) Scanner의 next() 이용
   - 입력된 문자가 영문자가 아니면 "영문자가 아닙니다"를 출력.
   - CTRL-Z를 입력 받을 때까지 프로그램이 계속 동작.
     - 참고) Scanner의 next()가 실행 중일때 CTRL-Z를 입력하면 오류가 발생하므로, hashNext()로 입력이 있는지 먼저 확인 후 next() 호출
+
   
 ## 📝1.2
   - 키보드로부터 정수 3개를 입력 받고, 이 3개의 수로 삼각형을 만들 수 있는지 판별. 만약 삼각형이 구성된다면, 넓이를 계산하여 출력.
