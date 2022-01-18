@@ -35,55 +35,60 @@ boolean hasNext(): 키가 입력될 때까지 기다리며, 입력된 키가 있
     - 참고) Scanner의 next()가 실행 중일때 CTRL-Z를 입력하면 오류가 발생하므로, hashNext()로 입력이 있는지 먼저 확인 후 next() 호출
  #### Source code
   ```JAVA
-package lab1_1;
+package lab1_2;
 
 import java.util.Scanner;
 
-public class Lab1_1 {
+public class Lab1_2 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Scanner in = new Scanner(System.in);
 		
-		System.out.println("영문자를 입력하시오: ");
-		while(in.hasNext())
+		Scanner in = new Scanner(System.in);
+		System.out.print("정수 3개를 입력하세요: ");
+
+		int a = in.nextInt();
+		int b = in.nextInt();
+		int c = in.nextInt();
+
+		double s;
+		double result;
+
+		int max = 0;
+		int sum;
+
+		//세 변중 가장 큰 변 고르기
+		if(a>b)
 		{
-			String str = in.next();
-			char strc = str.charAt(0);
-			
-			if ('a'<=strc && strc <='z')
-			{
-				strc -= 32;
-				System.out.println("변환된 문자: "+strc);
-			}
-			
-			else if ('A'<=strc && strc <='Z')
-			{
-				strc += 32;
-				System.out.println("변환된 문자: "+strc);
-			}
-			else
-				System.out.println("영문자가 아닙니다.다시 입력해 주십시오.");
-				
-			System.out.println("영문자를 입력하시오: ");
-			
+			max = a;
+			if(max<c)
+				max = c;
 		}
 
-	}
+		else if(b>c)
+			max = b;
+		else 
+			max = c;
 
-}
+		sum= (a+b+c)-max;//가장 긴 길이의 변을 제외한 두 변의 합
+		
+		if(sum>max)//가장 큰 변의 길이가 나머지 두 변의 합의 길이보다 작다면 삼각형
+		{
+			s = (a+b+c)/2.0;
+			result = Math.sqrt(s*(s-a)*(s-b)*(s-c));
+
+			System.out.printf("삼각형의 넓이는 %f", result);
+		}
+		else
+			System.out.printf("삼각형이 아니다");
+
+		}
+	}
  ```
- #### 실행결과
-  
-![1 1](https://user-images.githubusercontent.com/87464750/149673644-c49b4bf2-7826-4b44-a9ed-1704bf4b2e91.png)
-  
-## 📝1.2
-  - 키보드로부터 정수 3개를 입력 받고, 이 3개의 수로 삼각형을 만들 수 있는지 판별. 만약 삼각형이 구성된다면, 넓이를 계산하여 출력.
-    - 참고1) 두 변의 합이 나머지 한 변의 합보다 크면 삼각형 구성 가능
-    - 참고2) 세 변의 길이(a, b, c)로부터 삼각형의 넓이를 계산하는 공식(헤론의 공식)
-    - 참고3) Math class의 sqrt() method 사용
-    - 참고4) 정수를 입력 받을 때, Scanner의 nextInt()도 사용해 보고, 일단 next()에 의해 문자열로 입력 받아 Integer의 parseInt()에 의해 정수로 반환하는 방법도 사용
-  
+
+#### 실행결과
+![image](https://user-images.githubusercontent.com/87464750/149904758-36f1a585-8777-4467-b47a-875f97ebb646.png)
+	
 </div>
 </details>
 
@@ -143,7 +148,6 @@ public class Lab2_1 {
 		// TODO Auto-generated method stub
 		printMultTable(7);
 	}
-
 }
 ```
 #### 실행결과
@@ -194,9 +198,6 @@ public class Lab2_2 {
 			
 			System.out.print("\n");
 		}
-		
-		
-
 	}
 
 }
@@ -320,12 +321,63 @@ public class Lab2_3 {
 				count = 0;
 			}
 			System.out.printf("\n");
-			
 		}
-		
 	}
-
 }
 ```
 #### 실행결과
 ![image](https://user-images.githubusercontent.com/87464750/149679389-6facc2a8-9a6e-425f-9901-428235114e9e.png)
+	
+</div>
+</details>
+
+<details>
+
+<summary> 배열 </summary>
+<div markdown="1">
+	
+#### 배열
+- 인덱스로 접근하는 다수의 데이터로 구성된 자료 구조
+	- 배열을 이용하면 한 번에 많은 메모리 공간 선언 가능
+- 같은 타입의 데이터들이 순차적으로 저장되는 공간
+	- 원소 데이터들이 순차적으로 저장됨
+	- 인덱스를 이용하여 원소 데이터 접근
+	- 반복문을 이용하여 처리하기에 적합한 자료 구조
+- 배열 인덱스
+	- 0부터 시작
+	- 인덱스는 배열의 시작 위치에서부터 데이터가 있는 상대 위치
+	
+#### 정방형 배열
+- 각 행과 열의 개수가 같은 배열
+#### 비정방형 배열
+- 각 행의 열의 개수가 다른 배열
+
+## 📝3.1
+- 키보드로부터 정수 10개를 입력 받아 배열에 저장하고, 오름차순으로 정렬한 후 출력하는 프로그램
+	- [조건1] 사이즈가 10인 배열을 한 개만 사용할 것(다른 배열 선언 및 사용 불가)
+	- [조건2] 정렬 부분을 아래와 같은 sort()라는 이름의 메소드로 구현
+		- static void sort(int[] array) {}
+#### Source code
+#### 실행결과
+![image](https://user-images.githubusercontent.com/87464750/149916842-d971aa12-11db-431c-828c-4ccc13051cc8.png)
+	
+## 📝3.2
+- 철수는 매주 로또 5개를 구입하는데, 항상 "자동선택"으로 구입한다. 다섯 set의 로또 번호를 자동으로 생성해주는 프로그램을 작성.
+	- [조건1] 5x6의 2차원 배열을 생성한다. 다섯 개의 각 행에 속한 6개의 숫자가 1set의 로또 번호를 의미하며, 각 숫자는 1~45 사이의 랜덤 번호이다. 중복된 숫자는 없어야 한다.
+	- [조건2] 각 로또 set를 정렬하여 재저장한다.(앞에서 구현한 sort() 메소드를 활용)
+	- [조건3] 5 set의 로또 번호를 출력한다.(정렬된 결과가 저장된 2차원 배열을 직접 출력)
+
+#### Source code
+#### 실행결과
+![image](https://user-images.githubusercontent.com/87464750/149916419-591c31bf-5aa9-4bea-972d-fb348292217e.png)
+	
+## 📝3.3
+- 다음은 1.2의 삼각형 넓이 계산 문제이다.
+	- 키보드로부터 정수 3개를 입력받고, 이 3개의 수로 삼각형을 만들 수 있는지 판별. 만약 삼각형이 구성된다면, 넓이를 계산하여 출력.
+	- 3개의 정수를 쉼표와 공백으로 구분하여, 위의 프로그램을 다시 작성하라
+		- 참고) String의 split()메소드는 문자열을 특정 구분자가 기준으로 나누어 배열에 담는다.
+		- 참고) String의 trim() 메소드는 문자열 앞뒤의 공백을 제거한다.
+		- 참고) Integer의 parseInt() 메소드는 문자열을 정수로 변환한다.
+#### Source code
+#### 실행결과
+![image](https://user-images.githubusercontent.com/87464750/149917579-f3dd4d9c-ad08-49e7-98bb-4aa3ec876b47.png)
