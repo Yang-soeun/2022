@@ -543,4 +543,82 @@ public class Lab2_3 {
 	- 상수 선언할 때 사용
 	- 상수는 선언 시 초기 값 지정하고, 실행 중 변경 
 
+## 클래스와 객체
+	
+## 📝4.1
+	
+다음과 같은 멤버를 가지는 Rectangle 클래스를 작성하시오
+- 필드
+	- int 차입의 x1, y1, x2, y2: 직사각형을 결정하는 두 점의 좌표
+	- 원점은 왼쪽 상단이라고 가정
+- 메소드
+	- 생성자 2개: 매개 변수가 없는 생성자와 x1, y1, x2, y2의 값을 전달 받아 설정하는 생성자
+	- void set(int x1, int y1, int x2, int y2): x1, y1, x2, y2의 좌표 설정
+	- boolean check(): 지정된 x1, y1 x2, y2의 값으로 직사각형이 구성되면 truem 그렇지 않으면 false를 리턴
+	- int getArea(): 사각형의 넓이를 반환(직사각형이 구성되지 않으면 0을 리턴)
+	- void show(): 직사각형의 네 점의 좌표와 넓이 정보를 출력(직사각형이 구성되지 않으면 출력 불가 메시지 출력)
+	- boolean equals(Rectangle r): 인자로 전달된 객체 r과 현 객체가 동일한 모양과 크기의 직사각형이면 true를, 그렇지 않으면 false를 리턴
+	
+앞에서 구현한 Rectangle 클래스가 제대로 동작하는지 다음의 RecTest 클래스를 사용하여 테스트.
+	
+```JAVA
+public class RecTest {
+ public static void main(String[] args) {
+  Rectangle r =new Rectangle();
+  Rectangle s = new Rectangle(1, 1, 2, 3);
+  
+  r.show();
+  s.show();
+  System.out.println(s.getArea());
+  r.set(2, 1, 4, 5);
+  r.show();
+  System.out.println(r.getArea());
+  
+  if(r.equals(s))
+   System.out.println("두 사각형은 같습니다.");
+ }
+}
+ ```
+#### Source Code
+#### 실행결과
+	
+## 📝4.2
 
+ComplexNumber 클래스를 구현하고, 이를 통해 생성된 복소수 사이의 덧셈, 뺄셈 등의 연산을 수행
+- 다음 클래슬 이용하여 ComplexNumber 클래스가 구현되었는지 테스트하라.
+
+```JAVA
+public class ComplexTest {
+
+	public static void main(String[] args) {
+
+		// TODO Auto-generated method stub
+		ComplexNumber n1 = new ComplexNumber();
+		ComplexNumber n2 = new ComplexNumber();
+
+		n1.setReal(5);
+		n1.setImage(7.2);
+		n2.setReal(-3.1);
+		n2.setImage(5.7);
+
+		System.out.print("n1 is -> ");
+		n1.printNumber();
+		System.out.print("n2 is -> ");
+		n2.printNumber();
+
+		ComplexNumber n3 = n1.add(n2);
+		System.out.print("n3 is -> ");
+		n3.printNumber();
+
+		System.out.print("n1 - n2 -> ");
+		n1.subtract(n2).printNumber();
+
+	}
+
+}
+ ```
+
+#### Source Code
+#### 실행결과
+	
+## 클래스와 객체 응용
