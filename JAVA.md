@@ -592,6 +592,7 @@ public class RecTest {
 [Lab4_1](JavaLab/lab4_1/src/lab4_1/Lab4_1.java)
 
 #### 실행결과
+![직사각형](https://user-images.githubusercontent.com/87464750/150938081-6524abdd-ee63-4d36-ae5a-8c35414c88e0.png)
 	
 ## 📝4.2
 
@@ -633,6 +634,7 @@ public class ComplexTest {
 [Lab4_2](JavaLab/lab4_2/src/lab4_2/Lab4_2.java)
 
 #### 실행결과
+![복소수](https://user-images.githubusercontent.com/87464750/150938180-6b155102-25c3-4d6a-927d-8e5dfd6903ae.png)
 	
 ## 클래스와 객체 응용
 ## 📝5.1
@@ -940,6 +942,230 @@ public class MouseDriver implements USBMouseInterface {//인터페이스 구현
 	
 #### Source Code
 #### 실행결과
+</div>
+</details>
+
+<details>
+
+<summary> 예외 처리 및 입출력 </summary>
+<div markdown="1">
+
+## 예외 처리(Exception Handling)
+#### 오류
+- 프로그램이 실행 중 어떤 원인에 의해 오작동하거나 비정상 종류되는 경우
+- 예외(exception)
+	- 복구 가능한 덜 심각한 오류
+		- 0 으로 나누기 시도, 존재하지 않는 파일 열기 등
+	- 예외가 발생하면 잘 처리하여 복구하기를 권장함
+	
+#### C언어
+- 표준 방법은 정의되어 있지 않으나, 리턴 값으로 예외 상황을 알려주는 방식을 주로 사용
+#### JAVA 
+- Try-catch를 통한 표준 방법 지원
+- 예외 정보를 담고 있는 객체를 생성하여 전달하는 방식
+
+#### JAVA의 예외 처리
+- 실행 중 오루 발생하면 JVM이 예외 객체 생성
+- 응용프로그램에서 예외 객체를 처리하지 않으면, 프로그램 강제종료
+- 예외 처리 문
+	- try-catch-finally문 사용
+	- finally 블록은 생략 가능
+	
+```
+	try{
+	//예외가 발생할 수 있는 위험한 코드
+	}
+	catch(처리할 예외 타입 선언){
+	//실제 예외가 발생하면 여기에서 처리
+	}
+	finally{
+	//예외 발생 여부와 상관없이 무조건 실행되는 문장
+	}
+```
+	
+#### 자주 발생하는 예외
+	
+| 예외 종류 | 예외 발생 경우 |    
+| :---: | :----: |    
+| ArithmeticException | 정수를 0으로 나눌 때 발생 |    
+| NullPointerException | null 레퍼런스를 참조할 때 발생 |
+| ClassCastException | 변환할 수 없는 타입으로 객체를 변환할 때 발생 |
+| OutOfMemoryError | 메모리가 부족한 경우 발생 |
+| ArrayIndexOutOfBoundsException | 배열의 범위를 벗어난 접근 시 발생|
+| IllegalArqumentException| 잘못된 인자 전달 시 발생 |
+| IOException| 입출력 동작 실패 또는 인터럽트 시 발생 |
+| NumberFormatException | 문자열이 나타내는 숫자와 일치하지 않는 타입의 숫자로 변환 시 발생 |
+	
+## 입출력
+- 입출력 대상
+	
+| | 입력 대상 | 출력 대상 |  
+| :---: | :----: | :----: |    
+| 표준 입출력 | 키보드 | 모니터 |
+| 파일 입출력 | 파일 | 파일 |
+| 네트워크 입출력 | 네트워크로 연결된 호스트 | 네트워크로 연결된 호스트 |
+
+- 입출력 내용
+	- 일반적인 바이너리 데이터
+		- 문자, 그림, 실행코드 등
+	- 문자는 중요하므로 특별 취급
+	
+#### 바이트스트림 클래스
+	
+- 바이트스크림 클래스(java.io 패키지에 포함)
+	- inputStream/OutputStream
+		- 추상 클래스
+		- 바이트 입출력 스트림을 다루는 모든 클래스의 수퍼 클래스
+	- FileInputStream/FileOutputStream
+		- 파일로부터 바이트 단위로 읽거나 저장하는 클래스(1차 스트림)
+		- 바이너리 파일의 입출력
+	- DataInputStream/DataOutputStream
+		- 자바의 기본 데이터 타입의 값(변수)을 바이너리 값 그대로 입출력(2차 스트림)
+		- 문자열도 바이너리 형태로 입출력
+
+#### InputStream을 이용한 키보드 읽기
+	
+- Inputstream은 추상클래스이므로 객체와 불가
+- System.in
+	- System 클래스의 static InputStream in 필드
+	- JVM은 시작될 때 ' InputStream '을 상속한 어떤 객체를 생성하고 System.in으로 가리킴
+	- 이 객체는 표준입력인 키보드와 연결됨
+	
+- System.in을 이용한 키보드 읽기
+	
+``` JAVA
+	int c;
+	
+	while((c = System.in.read()) != -1) {
+		System.out.print((char)c);
+	}
+```
+#### OutputStream을 이용한 화면 출력
+	
+- OutputStream은 추상클래스이므로 객체화 불가
+- System.out
+	- System 클래스의 static PrintStream out 필드
+	- JVM은 시작될 때 'OutputStream을 상속한 Printstream 객체'를 생성하고 System.out으로 가리킴
+	- 이 객체는 표준출력인 모니터와 연결됨
+
+``` JAVA
+	int c;
+	
+	while((c = System.in.read()) != -1) {
+		System.out.print((char)c);
+	}
+```
+	
+#### FileInputStream을 이용한 파일 읽기
+
+``` JAVA
+FileInputStream fin = new FileInputstream("c:\\test.txt");
+	
+int c;
+	
+while((c = fin.read()) != -1) {
+	System.out.print((char)c);
+	}
+	
+fin.close();
+```
+- 입력 받이트 스트림객체를 생성하고 c:\\test.txt 파일 오픈
+- 파일 끝까지 반복하며 한 바이트씩 c에 읽어 들임.
+- 파일의 끝을 만나면 read()는 -1 flxjs
+- 바이트 c를 문자로 변환하여 화면에 출력
+- 스트림을 닫음. 파일도 닫힘. 더 이상 스트림으로부터 읽을 수 없음
+
+#### FileOutputStream을 이용한 파일 쓰기
+- 바이너리 값을 파일에 저장하는 바이트 스트림 코드
+
+``` JAVA
+FileOutputStream fout = new FileOutputStream("c:\\test.txt");
+
+int iNum[] = {1, 4, -1, 88, 50 };
+byte b[] = {7, 51, 3, 4, 1, 24};
+
+for(int i = 0; i<iNum.length; i++)
+	fout.write(iNum[i]);
+			      
+fout.write(b);
+			      
+fout.close();
+```
+			      
+- 출력 바이트 스트림 객체를 생성하고 c:\\test.txt 파일 오픈
+- 파일에 정수 값(바이너리)을 그대로 기록(LSB만) 
+- 파일에 바이트 배열(바이너리) 값을 그대로 기록
+- 스트림을 닫음, 파일도 닫힘, 더 이상 스트림으로부터 읽을 수 없음
+			
+#### 문자스트림
+			      
+- 문자 스트림을 다루는 클래스 (java.io 패키지에 포함)
+	- Reader/Writer
+		-  추상 클래스로서 문자 스트림을 다루는 모든 클래스의 슈퍼 클래스
+	- FileReader/FileWriter
+		- 텍스트 파일로의 문자 입출력에 특화된 클래스(1차 스트림)
+	- InputStreamReader/OutputStreamWriter
+		- 코딩 변환 기능 제공(2차 스트림)
+		- InputStreamReader : 바이트를 읽어 문자로 인코딩
+		- OutputStreamWriter : 문자를 읽어 바이트로 디코딩
+		
+#### File 클래스
+- File 클래스
+	- 파일의 경로명을 다루는 클래스
+		- java.io.File
+		- 파일과 디렉터리 경로명의 추상적 표현
+	- 파일 이름 변경, 삭제, 디렉터리 생성, 크기 등 파일 관리
+		- File 객체는 파일 읽고 쓰기 기능 없음
+		- 파일 입출력은 파일 스트림 이용
+
+
+#### File 클래스 생성자와 주요 메소드
+			      
+| 메소드 | 설명 |    
+| :---: | :----: |    
+| File(File parent, String child)| parent 디렉터리에 child 파일명으로 구성되는 File 객체 생성 |    
+| File(String pathname) | 문자열 pathname이 나타내는 File 객체 생성 |
+| File(String parent, String child) | parent의 디렉터리에 문자열 child가 나태는 새로운 File 객체 생성 |
+| File(URI uri) | file:URI를 추상 경로명으로 변환하여 File 객체 생성 |
+			      
+| 메소드 | 설명 |    
+| :---: | :----: |    
+| boolean mkdir() | 추상 경로명이 나타내는 새로운 디렉터리 생성 |    
+| String[] list() | 디렉터리 내에 있는 파일과 디렉터리 이름을 문자열 배열로 변환 |
+| String[] listFiles() | 추상 경로명이 나타내는 디렉터리 내에 있는 파일의 일므을 문자열 배열로 변환 |
+| boolean renameTo(File dest) | dest가 지정하는 추상 경로명으로 파일 이름 변경 |
+| boolean delete() | 추상 경로명이 나타내는 파일 또는 디렉터리 삭제|
+| long length() | 추상 경로명이 나타내는 파일의 크기 반환 |
+| String getPath() | 추상 경로명 전체를 문자열로 변환하여 반환 |
+| String getName() | 추상 경로명이 나타내는 파일 또는 디렉터리 이름을 문자열로 반환하여 반환 |
+| boolean isFile() | 추상 경로명이 일반 파일이면 true 반환|
+| boolean isDirectory() | 추상 경로명이 디렉터리이면 true 반환 |
+| long lastModified() | 추상 경로명이 나타내는 파일이 마지막으로 변경된 시간 반환 |
+| boolean exists() | 추상 경로명이 나타내는 파일 또는 디렉터리가 존재하면 true  |
+			
+## 예외 처리와 입출력
+	
+## 📝9.1
+	
+- 내용이 저장된 "data.txt"를 만드시오.
+- 위 파일을 한 라인씩 read해서 문자열을 구분한 다음, 해당 정보를 지닌 학생 객체를 생성하고, 객체들의 정보를 "output.txt"에 다음과 같이 write 하기.
+- 다음과 같은 Student 클래스를 구현
+		
+##### <필드>
+	- private int ID;
+	- private String name;
+	- private int score;
+	
+##### <메소드>
+	- 생성자
+	- accessor 및 mutator
+	- 기타 필요한 method (예: toString())
+
+ - 예외처리를 위한 ScoreException 클래스를 
+	
+#### Source Code
+#### 실행결과
+	
 </div>
 </details>
 
