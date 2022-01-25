@@ -761,11 +761,11 @@ Class Student extends Person{}
 | 바인딩 |  정적 바인딩. 컴파일 시에 중복된 메소드 중 호출된 메소드 결정| 동적 바인딩. 실행 시간에 오버라이딩된 메소드 찾아 호출 |
 
 ## 추상 메소드와 추상 클래스
-- 추상 메소드(abstract method)
+##### - 추상 메소드(abstract method)
 	- 선언되어 있으나 구현되지 않은 메소드
 		- 메소드 앞에 abstract 선언
 	- 추상 메소드는 자식 클래스에서 오버라딩하여 구현
-- 추상 클래스(abstract class)
+##### - 추상 클래스(abstract class)
 	- 추상 메소드를 하나라도 가진 클래스
 		- 크래스 앞에 abstract라고 선언해야 함
 	- 설계와 구현의 분리
@@ -837,31 +837,92 @@ public class MouseDriver implements USBMouseInterface {//인터페이스 구현
 ## 📝6.1
 
 - 다음 조건을 만족하는 Employee 클래스를 구현.
-1. 필드.
+##### 1. 필드.
 	- protected String name: 사원의 이름
 	- private int salary : 봉급
 	- protected String ID: 사원의 사번
-2. 생성자
+##### 2. 생성자
 	- Employee(): String은 "", int 형은 0으로 초기화
 	- Employee(String name, int salary, String ID) : parameter로 입력 받아 초기화
-3. 메소드
+##### 3. 메소드
 	- 각 필드의 mutator와 accessor 메소드를 구현
 	- toString(): name과 salary 및 ID를 "\t"를 이용하여 구분한 String 으로 return 
 
 - 다음 조건을 만족하는 Manager 클래스를 구현하시오.
-1. Employee 클래스를 상속
-2. 추가적인 필드
+##### 1. Employee 클래스를 상속
+##### 2. 추가적인 필드
 	- private String department: 책임 지고 있는 부서의 이름
-3. 생성자
+##### 3. 생성자
 	- Manager(): Employee의 default constructor를 호출하고 department를 "" 으로 초기화
 	- Manager(String name, int salary, String ID, String department) : parameter를 입력받아 초기화
-4. 메소드
+##### 4. 메소드
 	- 메소드 mutator와 accessor를 구현
 	- toString(): name, salary, ID과 department를 "\t"을 이용하여 구분한 String으로 return
 
 #### Source Code
 #### 실행결과
 
+## 상속과 다형성
+	
+## 📝7.1
+
+- 세 개의 클래스(Student, Undergraduate, Graduate)를 구현.
+- Student는 Undergraduate와 Graduate의 부모 클래스
+- Student 클래스의 getAnnualSalary()는 0을 리턴
+- Undergraduate 클래스이 getAnnualSalary()는 semesterSalary로부터 계산된 연 급여 리턴
+	- [참고] 학과 일을 돕는 학부생은 한 학기에 한번씩 수당을 받으며, semesterSalary가 이 정보를 저장
+- 유사하게, Graduate의 연 급여는 monthSalary로부터 계산됨
+	- [참고] 학과 일을 돕는 대상원생은 한 달에 한 번씩 수당을 받으며, monthSalary가 이 정보를 저장
+- toString()은 해당 객체에 대한 중요 정보를 출력
+
+#### Source Code
+#### 실행결과
+
+## 추상 클래스
+	
+## 📝8.1
+- 텍스트 화면의 원하는 위치에 원하는 크기의 도형(직사각형, 직각삼각형)을 그리기 위해 다음 2개의 클래스를 구현하라.
+##### 1. Rectangle 클래스
+##### <필드>
+- private String figureName: 직사각형의 이름
+- private int width: 직사각형의 밑변 길이
+- private int height: 직사각형의 높이
+
+##### <메소드>
+- public Rectangle(String figureName, int width, int height): 생성자
+- public void drawAt(int offset_c, int offset_y)
+	- 직사각형의 그릴 위치(offset_c, offset_y)를 맞춘다
+	- 이때 정확한 위치를 표시하기 위해 번호를 표시한다.
+- public void drawHere(int offset_x)
+	- drawAt()에 의해 호출되며 ' * ' 를 이용하여 밑변 width, 높이 height인 직사각형을 그린다.
+
+##### 2. Triangle 클래스
+##### <필드>
+- private String figureName: 직사각형의 이름
+- private int base: 직각삼각형의 밑변 및 높이
+
+##### <메소드>
+- public Triangle(String figureName, int base): 생성자
+- public void drawAt(int offset_x, int offset_y)
+	- 직각삼각형을 그릴 위치(offset_x, offset_y)를 맞춘다.
+	- 이떄 정확한 위치를 표시하기 위해 번호를 표시한다.
+- public void drawHere(int offset_x)
+	- drawAt()에 의해 호출되며 ' * '를 이용하여 밑변 base, 높이 base인 직각삼각형을 그린다.
+
+- 앞의 두 클래스를 살펴보면 공통적으로 포함된 내용이 있다. 따라서 상속과 추상 메소드의 개념을 이요애하여 Figure라는 새로운 클래스를 정의할 수 있다.
+
+##### 3. Figure 클래스
+##### <필드>
+- Rectangle과 Triangle 클래스에 공통으로 들어가는 필드들
+##### <메소드>
+- Rectangle과 Triangle 클래스에 공통으로 들어가는 메소드들
+
+- Rectangle과 Triangle 클래스의 필드 및 메소드 이름은 절대 변경하지 말 것
+- Figure 클래스는 객체를 생성할 필요가 없으며, 이 클래스에 정의된 메소드 역시 body({...})를 만들 필요가 없으므로, 추상 메소드로 정의할 수 있다. 
+	-> 이 힌트를 이용하여, Figure 클래스를 추상 클래스로 정의하고 적절히 구현.
+	
+#### Source Code
+#### 실행결과
 </div>
 </details>
 
