@@ -1169,3 +1169,188 @@ fout.close();
 </div>
 </details>
 
+<details>
+
+<summary> 패키지 </summary>
+<div markdown="1">
+	
+## 자바의 패키지(package)
+	
+#### 패키지란?
+- 서로 관련된 클래스와 인터페이스의 컴파일 된 클래스 파일들을 하나의 디렉터리에 묶어 놓은 것
+- 하나의 응용프로그램은 여러개의 패키지로 작성 가능
+	- 하나의 패키지로 만들고 모든 클래스 파일을 넣어 둘 수도 있음
+- 패키지는 jar 파일로 압출할 수 있음
+	- 예) JDK에서 제공하는 표준 패키지는 rt.jar에 압축
+
+#### 패키지 사용하기, import 문
+
+- 다른 패키지에 작성된 클래스 사용
+	- import를 이용하지 않는 경우
+		- 소스 내에서 패키지 이름과 클래스 이름의 전체 경로명을 써주어야 함
+	- import 키워드를 이용하는 경우
+		- 소스의 시작 부분에 사용하려는 패키지 명시
+			- 소스에는 클래스 명만 명시하면 됨
+		- 특정 클래스의 경로명만 포함하는 경우
+			- import javautilScanner;
+		- 패키지 내의 모든 클래스를 포함시키는 경우
+			- import javautil*;
+			- *는 현재 패키지 내의 클래스만을 의미하며 하위 패키지의 클래스까지 포함하지 않는다.
+	
+#### 패키지의 특징
+- 패키지 계층구조
+	- 클래스나 인터페이스가 넘 많아지면 관리의 어려움
+	- 관련된 클래스 파일을 하나의 패키지로 계층화하여 관리 용이
+- 패키지별 접근 제한
+	- default로 선언된 클래스나 멤버는 동일 패키지 내의 클래스들이 자유롭게 접근하도록 허용
+- 동일한 이름의 클래스와 인터페이스의 사용 가능
+	- 서로 다른 패키지에 이름이 같은 클래스와 인터페이스 존재 가능
+- 높은 소프트웨어 재사용성
+	- 오라클에서 제공하는 자바 API는 패키지로 구성되어 있음
+	- java.lang, java.io 등의 패키지들 덕분에 일일이 코딩하지 않고 입출력 프로그램을 간단히 작성할 수 있음
+	
+#### 주요 패키지
+- java.lang
+	- 자바 language 패키지
+		- 스트링 수학 함수, 입출력 등 자바 프로그래밍에 필요한 기본적인 클래스와 인터페이스
+	- 자동으로 import 됨 -> import 문 필요 없음
+- java.util
+	- 자바 유틸리티 패키지
+		- 날짜, 시간, 벡터, 해시맵 등과 같은 다양한 유틸리티 클래스와 인터페이스 제공
+- java.io
+	- 키보드, 모니터, 프린터, 디스크 등에 입출력을 할 수 있는 클래스와 인터페이스 제공
+- java.awt
+	- 자바 GUI 프로그래밍을 위한 클래스와 인터페이스 제공
+- javax.swing
+	- 자바 GUI 프로그래밍을 위한 스윙 패키지
+	
+#### Object 클래스
+- 특징
+	- java.lang 패키지에 포함
+	- 자바 클래스 계층 구조의 최상위에 위치
+	- 모든 클래스의 수퍼 클래스
+	
+-  주요 메소드
+	
+| 메소드 | 설명 |    
+| :---: | :----: |    
+| protected Object clone() | 현 객체와 똑같은 객체를 만들어 리턴. |    
+| boolean equals(Object obj) | obj가 가리키는 객체와 현재 객체가 비교하여 같으면 ture 리턴. |
+| Class getClass() | 현 객체의 런타임 클래스를 리턴. |
+| int hashCode() | 현 객체에 대한 해시 코드 값 리턴. |
+| String toString() | 현 객체에 대한 스트링 표현을 리턴.|
+| void notify() | 현 객체에 대해 대기하고 있는 하나의 스레드를 깨운다. |
+| void notifyAll() | 현 객체에 대해 대기하고 있는 모든 스레드를 깨운다. |
+| void wait() | 다른 스레드가 깨울 때까지 현재 스레드를 대기하게 한다. |
+	
+#### 객체를 문자열로 변환
+- String toString()
+	- 객체를 문자열로 변환()
+	- Object 클래스에 구현된 toString()이 반환하는 문자열
+		- 클래스 이름@객체의 hash code
+	- 각 클래스는 toString()을 오러라이딩하여 자신만의 문자열 리턴 가능
+- 컴파일러에 의한 자동 변환
+	- '객체 + 문자열' -> '객체.toString() + 문자열'로 자동 변환
+	
+#### Wrapper 클래스
+
+- 자바의 기본 타입을 클래스화한 8개 클래스
+	
+| 기본 </br> 데이터 타입 | byte | short| int | long | char | float | double| boolean |
+| :---: | :----: | :----: | :----: | :----: | :----: | :----: | :----: | :----: |
+	
+| Wrapper </br> 클래스 타입 | Byte | Short| Integer | Long | Character | Float | Double| Boolean |
+| :---: | :----: | :----: | :----: | :----: | :----: | :----: | :----: | :----: |
+	
+- 용도
+	- 기본 데이터 타입의 객체화
+		- 기본 데이터 타입: 변수 선언
+		- Wrapper 클래스 타입: 레퍼런스 선언
+	- 기본 타입의 값을 사용할 수 없고 객체만 사용하는 컬렉션 등에 기본 타입의 값을 Wrapper 클래스 객체로 만들어 사용
+
+#### 박싱과 언박싱
+- 박싱(boxing)
+	- 기본 타입의 값을 Wrapper 객체로 변환하는 것
+- 언박싱(unboxing)
+	- Wrapper 객체에 들어 있는 기본 타입의 값을 빼내는 것
+	
+![image](https://user-images.githubusercontent.com/87464750/151351171-f29b94f5-a67a-4ce3-a4a9-147e4043632b.png)
+	
+#### String의 생성과 특징
+- String - java.lang.String
+	- String 클래스의 하나의 스트링만 표현
+
+``` JAVA
+// 스트링 리터럴로 스트링 객체 생성
+String str1 = "abcd";
+	
+// String 클래스의 생성자를 이용하여 스트링 생성
+char data[] = {'a', 'b', 'c', 'd'};
+String str2 = new String(data);
+String str3 = new String("abcd");//str2와 str3은 모두 "abcd" 스트링
+``` 
+	
+- String 생성자
+	
+| 생성자 | 설명 |    
+| :---: | :----: |    
+| String() | 빈 스트링 객체 생성 |    
+| String(char[] value) | 문자 배열에 포함된 문자들을 스트링 객체로 생성 |
+| String(String original) | 인자로 주어진 스트링과 똑같은 스트링 객체 생성 |
+| String(StringBuffer buffer) | 스트링 버퍼에 포함된 문자들을 스트링 객체로 생성 |
+	
+#### 스트링 리터럴과 new String()
+
+- 스트링 생성
+	- 단순 리터럴로 생성, String s = "Hello";
+		- JVM의 String 리터럴 테이블에 저장
+	- String 객체로 생성, String t = new String("Hello");
+		- 힙에 String 객체 생성
+	
+#### 스트링 객체의 주요 특징
+- 스트링 객체는 수정 불가능
+- ==과 equals()
+	- 두 스트링을 비교할 때 반드시 equals()를 사용하여야 함
+		- equals()는 내용을 비교하기 때문
+
+#### 주요 메소드
+
+| 메소드 | 설명 |    
+| :---: | :----: |    
+| char charAt(int index) | 저장된 index 엔덱스에 있는 문자 값 리턴 |    
+| int codePointAt(int index) | 저장된 index 인덱스에 있는 유니코드 값 리턴 |
+| int compareTo(String anotherString) | 두 스트링을 사전적 순서를 기준으로 비교, 두 스트링이 같으면 0, </br> 현 스트링에 지정된 스트링보다 사전적으로 먼저 나오면 음수, </br> 아니면 양수를 리턴|
+| String conact(String str) | str 스트링을 현재 스트링 뒤에 덧붙인 스트링 리턴 |
+| boolean contains(CharSequence s) | s에 지정된 일련의 문자들을 포함하고 있으면 ture 리턴 |    
+| int lenght() | 스트링의 길이 리턴 |
+| String replace(Charsequece target, Charsequence replacement) | target이 지정하는 일련의 문자들을 replacement가 지정하는 문자들로 변경한 스트링 리턴 |
+| String[] split(String regex) | 정규직 regex에 일치하는 부분을 중심으로 스트링을 분리하고 분리된 스트링을 배열에 저장하여 리턴 |
+| String subString(int beginIndex) | beginIndex 인덱스부터 시작하는 서브 스트링 리턴 |    
+| String toLowerCase() | 스트링을 소문자로 변경한 스트링 리턴 |
+| String toUpperCase() | 스트링을 대문자로 변경한 스트링 리턴|
+| String trim() | 스트링 앞뒤의 공백 문자들을 제거한 스트링 |
+	
+#### Math 클래스
+
+- 기본적인 산술 연산을 수행하는 메소드 제공
+	- java.lang.Math
+	- 모든 메소드는 static으로 선언
+		- 클래스 이름으로 바로 호출 가능
+
+| 메소드 | 설명 |    
+| :---: | :----: |    
+| static double abs(double a) | 실수 a의 절댓값 리턴 | 
+| static double cos(double a) | 실수 a의 cosine 값 리턴|   
+| static double sin(double a) | 실수 a의 sine 값 리턴 |   
+| static double tan(double a) | 실수 a의 tangent 값 리턴 |   
+| static double exp(double a) | e^3 값 리턴 |   
+| static double ceil(double a) | 실수 a보다 크거나 같은 수 중에서 가장 작은 정수를 실수 타입으로 리턴 |   
+| static double max(double a, double b) | 두 수 a, b 중에서 큰 수 리턴 |   
+| static double min(double a, double b) | 두 수 a, b 증에서 작은 수 리턴|   
+| static double random() | 0.0보다 크거나 같고 1.0보다 작은 임의의 실수 리턴 |   
+| static double rint(double a) | 지정된 실수 a에 가장 근접한 정수를 실수 타입으로 리턴 |   
+| static long round(double a) | 실수 a를 소수 첫째 자리에서 반올림한 정수를 long 타입으로 반환 |   
+| static double sqrt(double a) | 실수 a의 제곱근 리턴 |
+
+</div>
+</details>
