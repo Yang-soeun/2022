@@ -1354,3 +1354,250 @@ String str3 = new String("abcd");//str2와 str3은 모두 "abcd" 스트링
 
 </div>
 </details>
+
+<details>
+
+<summary> 제네릭과 컬렉션 </summary>
+<div markdown="1">
+
+## 컬렉션(collection)의 개념
+- 요소(element)라고 불리는 가변 개수의 객체들의 저장소
+	- 객체들의 컨테이너라고도 불림
+	- 요소의 개수에 따라 크기 자동 조절
+	- 요소의 삽입, 삭제에 따른 요소의 위치 자동 이동
+- 고정 크기의 배열을 다루는 어려움 해소
+- 다양한 객체들의 삽입, 삭제, 검색 등의 관리 용이
+
+#### 컬렉션과 제네릭
+- 컬렉션은 제네릭(generics) 기법으로 구현됨
+- 컬렉션의 요소는 객체만 가능
+	- 기본적으로 int, char, double 등의 기본 타입 사용 불가하지만, JDK 1.5부터 자동 박싱/언박싱 기능으로 기본 타입 사용 가능
+- 제네릭
+	- 특정 타입만 다루지 않고, 여러 종류의 타입으로 변신할 수 있도록 클래스나 메소드를 일반화시키는 법
+	- < E >, < K >, < V > : 타입 매개 변수
+- 제네릭 클래스 사례
+	- 제네릭 벡터: Vector< E >
+	- E에 특정 타입으로 구체화
+	- 정수만 다루는 벡터 Vector< Integer >
+	- 문자열만 다루는 벡터 Vector< String >
+
+#### 제너릭의 기본 개념
+- 모든 종류의 데이터 타입을 다룰 수 있도록 일반화된 타입 매개 변수로 클래스나 메소드를 작성하는 기법
+	- C++의 템플릿(template)과 동일
+
+#### Vector< E >
+##### Vector< E >의 특성
+- java.util.Vector
+	- < E >에서 E 대신 요소로 사용할 특정 타입으로 구체화
+- 여러 객체들을 삽입, 삭제, 검색하는 컨테이너 클래스
+	- 배열의 길이 제한 극복
+	- 원소의 개수가 넘쳐나면 자동으로 길이 조절
+- Vector에 삽입 가능한 것
+	- 객체,  null
+	- 기본 타입은 박싱/언박싱으로 Wrapper 객체로 만들어 저장
+- Vector에 객체 삽입
+	- 벡터의 맨 뒤에 객체 추가
+	- 벡터 중간에 객체 삽입
+- Vector에서 객체 삭제
+	- 임의의 위치에 있는 객체 삭제 가능: 객체 삭제 후 자동 자리 이동
+
+#### Vector<E> 클래스이 주요 메소드
+	
+| 메소드 | 설명 |    
+| :---: | :----: |    
+| boolean add(E element) | 벡터의 맨 뒤에 element 추가 | 
+| void add(int index, E element) | 인덱스 index에 element|   
+| int capacity() | 벡터의 현재 용량 리턴 |   
+| boolean addAll(Collection< ? extends E > c) | 컬렉션 c의 모든 요소를 벡터의 맨 뒤에 추가|   
+| void clear() | 벡터의 모든 요소 삭제 |   
+| boolean contains(Object o) | 벡터가 지정된 객체 o를 포함하고 있으면 true 리턴 |   
+| E elementAt(int index) | 인덱스 index의 요소 리턴 |   
+| E get(int index) | 인덱스 index의 요소 리턴|   
+| int indexOf(Object o) | o와 같은 첫 번째 요소의 인덱스 리턴, 없으면 -1 리턴 |   
+| boolean isEmpty() | 벡터가 비어 있으면 true 리턴 |
+| E remove(int index) | 인덱스 index의 요소 삭제 |
+| boolean remove(Object o) | 객체 o와 같은 첫번째 요소를 벡터에서 삭제 |   
+| void removeAllElements() | 벡터의 모든 요소를 삭제하고 크기를 0으로 만듦 |   
+| int size() | 벡터가 포함하는 요소의 개수 리턴 |
+| Object[] toArray() | 벡터가 모든 요소를 포함하는 배열 리턴 |
+
+#### ArrayList< E >의 특성
+##### ArrayList< E >의 특성
+
+- java.util.ArrayList, 가변 크기 배열을 구현한 클래스
+	- < E > 에서 E 대신 요소로 사용할 특정 타입으로 구체화
+- ArrayList에 삽입 가능한 것
+	- 객체, null
+	- 기본 타입은 박싱/언박싱으로 Wrapper 객체로 만들어 저장
+- ArrayList에 객체 삽입/삭제
+	- 리스트의 맨 뒤에 객체 추가
+	- 리스트의 중간에 객체 삽입
+	- 임의의 위치에 있는 객체 삭제 가능
+- 벡터와 달리 스레드 동기화 기능 지원하지 않음
+	- 다수의 스레드가 동시에 ArrayList에 접근할 때 충돌 발생
+	- 멀티 스레드 프로그램이 아니라면 더 가벼운 ArrayList 사용
+
+#### Array< E > 클래스이 주요 메소드
+| 메소드 | 설명 |    
+| :---: | :----: |  	
+| boolean add(E element) | ArrayList의 맨 뒤에 element 추가 |
+| void add(int index, E element) | 인덱스 index에 지정된 element 삽입 |
+| boolean addAll(Collection< ? extends E > c) | 컬렉션 c의 모든 요소를 ArrayList의 맨 뒤에 추가 |
+| void clear() | ArrayList의 모든 요소 삭제 |
+| boolean contains(Object o) | ArrayList가 지정된 객체를 포함하고 있으면 true 리턴 |
+| E elemetAt(int index) | index 인덱스의 요소 리턴 |
+| E get(int index) | index 인덱스의 요소 리턴 |
+| int indexOf(Object o) | o와 같은 첫번째 요소의 인덱스 리턴, 없으면 -1 리턴 |
+| boolean isEmpty() | ArrayList가 비어있으면 true 리턴 |
+| E remove(int index)| index 인덱스의 요소 삭제 |
+| boolean remve(Object o) | o와 같은 첫 번째 요소를 ArrayList에서 삭제 |
+| int size() | ArrayList가 포함하는 요소의 개수 리턴 |
+| Object[] toArray() | ArrayList의 모든 요소를 포함하는 배열 리턴 |
+	
+#### LinkedList< E >
+##### LinkedList< E >의 특성
+- java.util.LinkedList
+- List 인터페이스를 구현한 컬렉션 클래스
+- Vector, ArrayList 클래스와 매우 유사하게 작동
+- 요소 객체들은 양방향으로 연결되어 관리됨
+- 요소 객체는 맨 앞, 맨 뒤에 추가 가능
+- 요소 객체는 인덱스를 이용하여 중간에 삽입 가능
+- 맨 앞이나 맨 뒤에 요소를 추가하거나 삭제할 수 있어 스택이나 큐로 사용 가능
+- ArrayList는 배열이므로 요소들이 연속된 메모리 영역에 저장(읽고 쓰기가 빠르나, 추가, 삭제가 느릴 수 있음)되는 반면, LinkedList는 리스트이므로 요소들이 메모리 영역에 산재되어 저장되고 포인터로 연결
+
+#### 컬렉션의 순차 검색을 위한 Iterator
+##### Iterator< E > 인터페이스
+- Vector< E >, ArrayList< E >, LinkedList< E >가 상속받는 인터페이스
+	- 리스트 구조의 컬렉션에서 요소의 순차 검색을 위한 메소드 포함
+	- Iterator< E > 인터페이스 메소드
+	
+| 메소드 | 설명 |    
+| :---: | :----: |  	
+| boolean hashNext() | 다음 반복에서 사용될 요소가 있으면 true 리턴 |
+| E next() | 다음 요소 리턴 |
+| void remove() | 마지막으로 리턴된 요소 제거 |
+	
+- iterator() 메소드
+	- iterator()를 호출하면 Iterator 객체 반환
+	- Iterator 객체를 이용하여 인덱스 없이 순차적 검색 가능
+	
+``` JAVA
+Vector< Integer > v = new Vector< Integer>();
+Iterator< Integer > it = v.iterator();
+while(it.hashNext()){//모든 요소 방문
+	int n = it.next();//다음 요소 리턴
+	...
+	}
+```
+
+#### Collections 클래스 활용
+##### Collections 클래스
+- java.util 패키지에 포함
+- 컬렉션에 대해 연산을 수행하고 결과로 컬렉션 리턴
+- 모든 메소드는 static 타입
+- 주요 메소드
+	- 컬렉션에 포함된 요소들을 정렬하는 sort() 메소드
+	- 요소의 순서를 반대로 하는 reverse() 메소드
+	- 요소들의 최대, 최소값을 찾아내는 max(), min() 메소드
+	- 특정 값을 검색하는 binarySearch() 메소드
+
+#### 제네릭 만들기
+##### 제네릭 클래스와 인터페이스
+	
+- 클래스나 인터페이스 선언부에 일반화된 타입 추가
+``` JAVA
+public class MyClass<T>{//제네릭 클래스 MyClass 선언, 타입 매개 변수 T
+	T val;//val의 타입은 T
+	void set(T a){
+		val = a;//T 타입의 값 a를 val에 지정
+	}
+	T get() {
+		return val;//T 타입의 값 val 리턴
+	}
+}
+```
+	
+- 제네릭 클래스 레퍼런스 변수 선언
+	
+``` JAVA
+MyClass<String> s;
+List<Integer> li;
+Vector<String> vs;
+```
+
+#### 제네릭 객체 생성 - 구체화(specialization)
+##### 구체화
+- 제네릭 타입의 클래스에 구체적인 타입을 대입하여 객체 생성
+- 컴파일러에 의해 이루어짐
+``` JAVA
+MyClass<String> s = new MyClass<String>();//제네릭 타입 T에 String 지정
+s.set("Hello");
+System.out.println(s.get());//"hello" 출력
+	
+MyClass<Integer> n =  new MyClass<Integer> ();//제네릭 타입 T에 Integer 지정
+n.set(5);
+System.out.println(n.get());//숫자 5 출력
+```
+- 구체화된 MyClass<String>의 소스코드
+``` JAVA 
+public class MyClass<String>{
+	String val;
+	void set(String a){
+		val = a;
+	}
+	String get(){
+		return val;
+	}
+}
+```
+#### 구체화 오류
+- 타입 매개 변수에 기본 타입은 사용할 수 없음
+``` JAVA 
+Vector<int> vi =  new Vector<int> ();//컴파일 오류. int 사용 불가
+```
+- 수정
+``` JAVA 
+Vector<Integer> vi =  new Vector<Integer> ();//정상코드
+```
+
+#### 타입 매개 변수
+##### 타입 매개 변수
+- ' < ' 와 ' > ' 사이에 하나의 대문자를 타입 매개 변수로 사용
+- 많이 사용하는 타입 매개 변수 문자
+	- E: Element를 의미하여 컬렉션에서 요소를 표시할때 많이 사용한다
+	- T: Type을 의미한다.
+	- V: Value를 의미한다.
+	- K: Key를 의미한다.
+- 타입 매개변수가 나타내는 타입의 객체 생성 불가
+- 타입 매개 변수는 나중에 실제 타입으로 구체화
+- 어떤 문자도 매개 변수로 사용 가능
+	
+#### 제네릭과 배열
+##### 제네릭에서 배열의 제한
+- 제네릭 클래스 또는 인터페이스 배열을 허용하지 않음
+- 제네릭 타입의 배열도 허용되지 않음
+- 타입 매개변수의 배열에 레퍼런스는 허용
+
+#### 제네릭 메소드
+##### 제네릭 매소드 선언 가능
+	
+``` JAVA 
+class GenericMethodEx{
+	static <T> void toStack(T[] a, GStack<T> gs){
+		for(int i - 0; i< a.length; i++){
+			gs.push(a[i]);
+		}
+	}
+}
+```
+
+- 제네릭 메소드를 호출할 때는 컴파일러가 메소드의 인자를 통해 이미 타입을 알고 있으므로 타입을 명시하지 않아도 됨
+``` JAVA 
+String[] sa = new String[100];
+GStack<String> gss = new GStack<String> ();
+GenericMethodEx.toStack(sa, gss);//타입 매개 변수 T를 String 으로 유추함
+```
+- sa는 String[], gss는 GStack<String> 타입으로 T를 String으로 유추
+
+</div>
+</details>
