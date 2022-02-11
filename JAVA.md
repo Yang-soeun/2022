@@ -1599,5 +1599,221 @@ GenericMethodEx.toStack(sa, gss);//타입 매개 변수 T를 String 으로 유�
 ```
 - sa는 String[], gss는 GStack<String> 타입으로 T를 String으로 유추
 
+## 📝10.1
+
+#### 10-1. Vector, Collection을 활용한 프로그램
+- Size가 20인 벡터에 100 이상 1000이하의 정수 20개를 각각 저장한 후, 가장 큰 수와 가장 작은 수를 출력하는 프로그램.
+	- 100이상 1000 이하의 정수는 random()을 이용하여 생성.
+	- 가장 큰 수를 찾는 findMax() method를 별도로 구현.
+		- Collections 클래스의 max() method를 사용하지 말 것.
+	- 가장 작은 수와 정렬은 Collections 클래스의 min()과 sort() method를 사용.
+	
+#### Source Code
+#### 실행결과
+	
+## 📝10.2
+
+#### 10-2. ArrayList를 활용한 프로그램
+- " data.txt "한 라인씩 정보를 read한 다음 학생 객체를 생성하고, 각 학생 객체를 ArrayList에 저장하는 main() 프로그램 구현.
+
+#### Source Code
+#### 실행결과
+	
+## 📝10.3
+
+#### 10-3. 객체의 정렬
+- 실습 10-2에서 얻은 ArrayList에 담긴 학생 객체들을 "점수"의 내림차순으로 정렬한 후 출력.
+	- 출력을 위해 Student 클래스에는 반드시 toString() 함수 (재)구현해야 함.
+- Collections의 sort() 함수를 이용.
+	
+#### Source Code
+#### 실행결과
+
+</div>
+</details>
+
+<details>
+
+<summary> 스레드와 멀티태스킹 </summary>
+<div markdown="1">
+	
+#### 멀티태스킹(multi-tasking) 개념
+- 멀티태스킹
+	- 하나의 응용프로그램이 여러 개의 작업(태스크)를 동시에 처리
+
+#### 스레드와 프로세스
+- 공통점
+	- 순차적으로 실행되는 프로그램의 흐름
+- 차이점
+	- 프로세스는 독립된 실행 단위
+		- 운영체제로부터 동작에 필요한 자원을 독립적으로 할당받음
+		- 독립적이므로 서로 정보를 주고받기 어려움
+	- 스레드는 한 프로세스 내의 실행 단위
+		- 한 프로세스에게 주어진 자원을 함께 사용
+			- 단, 스택만은 스레드별로 주어져야 함
+		- 대신 서로 정보를 주고받기 쉬움
+- JAVA는 멀티스레딩만 지원
+	
+#### 자바 스레드(Thread)란?
+- 자바 스레드
+	- JVM에 의해 스케쥴이 되는 실행 단위
+- JVM과 멀티스레드의 관계
+	- 하나의 JVM은 하나의 자바 응용프로그램만 실행
+		- 자바 응용프로그램이 시작될 때 JVM이 함께 실행됨
+		- 자바 응용프로그램이 종료하면 JVM도 함께 종료함
+	- 하나의 응용프로그램은 하나 이상의 스레드로 구성 가능
+
+#### 스레드 만들기
+- 스레드 실행을 위해 개발자가 하는 작업
+	- 스레드가 수행할 소스코드 작성
+		- Thread 클래스이 public void run() 메솓
+	- JVM에게 스레드를 생성하고 해당 소스 코드를 실행하도록 요청
+- 자바에서 스레드 만드는 방법들
+	- java.lang.Thread를 상속한 클래스 정의
+	- java.lang.Rinnable 인터페이스 구현
+	
+#### Thread 클래스를 이용한 스레드 생성
+- 스레드 클래스 작성
+	- Thread 클래스 상속, 새 클래스 작성
+- 스레드 코드 작성
+	- run() 메소드 오버라이딩
+		- run() 메소드를 스레드 코드라고 부름
+		- run() 메소드에서 스레드 실행 시작
+- 스레드 객체 생성
+- 스레드 시작
+	- start() 메소드 호출
+		- 스레드로 작동 시작
+		- JVM에 의해 스케쥴이 되기 시작함
+	
+``` JAVA 
+class TimerThread extends Thread{
+	int n = 0;
+	//스레드 크래스 정의
+	public void run(){
+		while(true){//무한루프를 실행
+			//스레드 코드 작성: 1초에 한번씩 n을 증가시켜 콘솔에 출력
+			System.out.ptintln(n);
+			n++;
+			try{
+				sleep(1000);//1초동안 sleep
+			}
+			catch(InterruptedException e){return;}
+		}
+	}
+}
+	
+public class TestThread{
+	public static void main(String [] args){
+		TimerThread th = new TimerThread();//스레드 객체 생성
+		th.start();//스레드 시작
+	}
+}
+```
+
+#### 스레드 주의 사항
+- run() 메소드가 종료하면 스레드는 종료한다.
+	- 스레드가 계속 존재하게 하려면 run() 메소드 내에 무한 루프가 실행되어야 한다.
+- 한번 종료한 스레드는 다시 시작시킬 수 없다.
+	- 스레드 객체를 생성하여 다시 스레드로 등록하여야 한다.
+- 한 스레드에서 다른 스레드를 강제 종료할 수 있다.
+	
+#### Runnable 인터페이스로 스레드 만들기
+- 스레드 클래스 작성
+	- Runnable 인터페이스 구현하는 새 클래스 작성
+- 스레드 코드 작성
+	- run() 메소드 오버라이딩
+		- run() 메소드를 스레드 코드라고 부름
+		- run() 메소드에서 스레드 실행 시작
+- 스레드 객체 생성
+- 스레드 시작
+	- start() 메소드 호출
+	
+``` JAVA 
+//Runnable을 클래스로 구현
+class TimerRunnable implements Runnable{
+	int n = 0;
+	public void run(){
+		while(true){//무한루프를 실행
+			//스레드 코드 작성: 1초에 한번씩 n을 증가시켜 콘솔에 출력
+			System.out.ptintln(n);
+			n++;
+			try{
+				sleep(1000);//1초동안 sleep
+			}
+			catch(InterruptedException e){return;}
+		}
+	}
+}
+	
+public class TestThread{
+	public static void main(String [] args){
+		TimerThread th = new TimerThread();//스레드 객체 생성
+		th.start();//스레드 시작
+	}
+}
+```
+	
+#### 스레드 정보
+| 메소드 | 타입 | 내용 |    
+| :---: |:---: | :----: |  	
+| 스레드 이름 | 스트림 | 스레드의 이름으로서 사용자가 지정|
+| 스레드 ID | 정수 | 스레드 고유의 식별자 번호|
+| 스레드의 PC(Program Count) | 정수 | 현재 실행 중인 스레드 코드의 주소|
+| 스레드 상태 | 정수 | NEW, RUNNABLE, WAITING, TIMED_WAITING, BLOCK, TERMINATED 등 6개 상태 중 하나|
+| 스레드 우선순위 | 정수 | 스레드 스케줄링 시 사용되는 우선순위 값으로서 1 ~ 10 사이의 값이며 10이 최상위 우선순위|
+| 스레드 그룹 | 정수 | 여러 개의 자바 스레드가 하나의 그룹을 형성할 수 있으며 이 경우 스레드가 속한 그룹|
+| 스레드 레지스터 스택 | 메로리 블록 | 스레드가 실행되는 동안 레지스터들의 값|
+	
+#### Thread 클래스의 메소드
+	
+| 메소드 | 설명 |    
+| :---: | :----: |  	
+| 생성자 | Thread() </br> Thread(Runnable target) </br> Thread(String name) </br> Thread(Runnable target, String name)|
+| 스레드 시작시키기| void start() |
+| 스레드 코드 | void run() |
+| 스레드 Sleep | static void sleep(long miils) |
+| 다른 스레드 죽이기 | void interrupt() |
+| 다른 스레드에게 양보 | static void yield() |
+| 다른 스레드가 죽을때까지 기다리기 | void join() |
+| 현재 스레드 객체 알아내기 | static Thread currentThread() |
+| 스레드 ID 알아내기 | long getId() |
+| 스레드 이름 알아내기 | String getName() |
+| 스레드 우선순위 값 알아내기 | int getPriority() |
+| 스레드의 상태 알아내기 | Thread.State getState() |
+	
+#### 자바 응용프로그램의 기본 스레드
+- JVM이 시작되면 기본 스레드가 생성되고 main() 메소드 수행
+- 기본 스레드가 종료되어도 다른 스레드가 남아 있으면 프로그램은 종료되지 않음
+	
+#### 스레드 동기화(Thread Synchronization)
+- 멀티스레드 프로그램 작성지 주의점
+	- 다수의 스레드가 공유 데이터에 동시에 접근하는 경우
+		- 공유 데이터의 값에 예상치 못한 결과 발생 가능
+- 스레드 동기화
+	- 멀테스레드의 공유 데이터의 동시 접근 문제 해결책
+		- 공유데이터에 접근하고자 하는 모든 스레드를 한 줄로 세움
+		- 한 스레드가 공유 데이터에 대한 작업을 끝낼 때까지 다른 스레드가 그 데이터에 접근하지 못하도록 함
+	
+#### synchronized 키워드
+- synchronized 키워드
+	- 한 스레드만이 독점적으로 실행되어야 하는 코드를 표시하는 키워드
+- synchronized 키워드 사용 가능한 부분
+	- 메소드 전체 혹은 코드 블록
+- synchronized 부분이 실행될 때
+	- 실행 스레드는 그 객체를 독점적으로 사용할 수 있는 권한 획득
+	- 다른 스레드는 그 스레드가 권한을 내놓을 때까지 대기
+	
+## 📝11.1
+
+#### Prime Number 찾기
+- 1부터 10000 번째의 Prime number를 찾기
+- 10000개의 prime numver를 가지는 array를 생성함
+- Thread를 10개 생성
+	- 각각의 Thread는 Prime number를 찾음
+	- 찾은 prime number를 array에 순차적으로 추가함
+
+#### Source Code
+#### 실행결과
+	
 </div>
 </details>
