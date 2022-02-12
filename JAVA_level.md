@@ -137,8 +137,9 @@ list.set(0, 10);
 // Enhanced for문을 이용한 list 출력
 int c = 0;
 		
-for(int num : list)
-			answer[c++] = num;
+for(int num : list){
+	answer[c++] = num;
+	}
 ```
 #### before
 ##### Source_code
