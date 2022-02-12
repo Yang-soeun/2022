@@ -79,8 +79,11 @@ public class PrintArray{
 
 #### copyOfRange() 메소드 사용 전
 ##### Source_Code
+- [solution1_level1](java_solution/solution1_level1/src/solution1_level1/Solution1_level1.java)
+                                 
 #### copyOfRange() 메소드 사용 후
 ##### Source_Code
+- [solution1_level1_after](java_solution/solution1_af_level1/src/solution1_af_level1/Solution1_af_level1.java)
                                  
  </div>
 </details>
