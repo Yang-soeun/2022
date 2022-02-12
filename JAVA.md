@@ -1817,3 +1817,154 @@ public class TestThread{
 	
 </div>
 </details>
+	
+<details>
+
+<summary> 네트워크 </summary>
+<div markdown="1">
+	
+#### TCP/IP 소개
+##### IP
+- 인터넷에 연결된 컴퓨터 사이에서 데이터의 이동 경로를 찾아주는 길찾기 프로토콜
+
+##### TCP
+- 인터넷으로 연결된 컴퓨터 사이에서 데이터가 에러 없이 전달되도록 해주는 프로토콜
+- 대부분의 응용프로그램이 사용
+	- e-mail, 카카오톡, 웹(HTTP) 등
+	
+- Wi-Fi, LTE, 이더넷 등으로 인터넷에 연결되고, TCP/IP 프로토콜이 구현된 컴퓨터만이 인터넷을 통한 통신 가능
+	
+#### IP 주소
+- 인터넷에 연결된 컴퓨터를 식별하는 고유의 이름
+	- 32비트 숫자(IP 버전 4 기준)
+- 사람이 기억하기 쉽도록 8비트씩 끊어 10진수로 변환하여 읽을때가 많음
+	- ex) 192.156.11.15
+- 그래도 기억하기 어려우므로, 도메인(www.naver.com)으로 하기도 함
+##### 내 컴퓨터의 IP 주소 확인하기
+- 내 컴퓨터의 윈도우에서 명령창을 열어 ipconfig 명령 수행
+	
+#### 포트
+- 하나의 컴퓨터에서 실행되는 여러 통신 프로그램을 식별하기 위한 숫자
+- 잘알려진 포트(well-know ports)
+	- 시스템이 사용하는 포트 번호
+	- 잘 알려진 응용프로그램에서 사용하는 포트번호
+		- 0부터 1023 사이의 포트번호
+		- ex) 텔넷 23, HTTP 80, FTP 21
+	- 잘 알려진 포트 번호는 개발자가 사용하지 않는것이 좋음
+		- 충돌 가능성이 있다
+
+#### 네트워크 프로그래밍 = 소켓 프로그래밍
+##### 소켓(socket)
+- 파일을 다루려면 그 파일과 연결된 File 객체 필요
+- 다른 컴퓨터에서 실행되는 프로그램과 통신하려면 그 프로그램의 소켓과 연결된 Socket 객체 필요
+- 소켓의 이름
+	- 프로그램이 실행되는 컴퓨터의 IP 주소 + 그 컴퓨터에서 실행되는 프로그램을 식별하는 포트 번호의 결합
+	
+#### 네트워크 프로그래밍
+##### 클라이언트 - 서버 구조
+- 네트워크 프로그램의 전형적인 구조
+- 서비스를 제공하는 서버 프로그램과 서비스를 받는 클라이언트 프로그램을 쌍으로 개발
+- 서버는 한 번 실행되면 거의 종료되지 않고 클라이언트의 접속을 기다림
+- 클라이언트는 필요할 때 실행되더 서버에 접속한 후 서비스를 받고나서 종료
+	
+#### Socket 클래스
+- java.net 패키지에 포함
+- 주요 생성자
+| 메소드 | 설명 |    
+| :---: | :----: |  	
+| Socket(InetAddress address, int port) | 소켓을 생성하여 지정된 IP 주소와 포트 번호에 연결한다. |
+| Socket(String host, int port)| 소켓을 생성하여 지정된 호스트와 포트 번호에 연결한다. 호스트 이름이 null인 경우는 루프백(loopback) 주소로 가정한다. |
+- C언어의 소켓 라이브러리는 소켓을 생성하고 명시적으로 서버 소켓에 연결 요청하는 반면, JAVA의 소켓 API는 소켓 생성시 자동으로 서버 소켓에 연결 요청
+- 주요 메소드
+| 메소드 | 설명 |    
+| :---: | :----: |  	
+| void close() | 소켓을 닫는다. |
+| void connect(SoketAddress endpoint)| 소켓을 서버에 연결 |
+| InetAddress getInetAddress() | 소켓이 연결한 서버의 주소 반환 |
+| InputStream getInputStream()| 소켓에 대한 입력 스트림 반환 |
+| InetAddress getLocalAddress() | 소켓이 연결된 로컬 주소 반환 |
+| int getLocalPort() |소켓이 연결된 로컬 포트 번호 반환 |
+| int getPort() | 소켓이 연결한 서버의 포트 번호 반환|
+| OutputStream getOutputStream() | 소켓에 대한 출력 스트림 반환 |
+| boolean isBound() | 소켓이 로컬 주소에 연결되어 있으면 true 반환 |
+| boolean isConnected() | 소켓이 서버에 연결되어 있으면 true 반환 |
+| boolean isClosed() | 소켓이 닫혀있으면 true 반환|
+| void setSoTimeout(int timeout)| 데이터 일기 타임아웃 시간 지정. 0이면 타임아웃 해제 |
+	
+#### 소켓 사용 절차
+- 소켓 생성 및 서버 접속
+``` JAVA 
+Soket dlientSocket = new Socket("128.12.1.1", 5550);
+```
+- 입출력 스트림 얻기
+``` JAVA 
+BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))
+BufferedWriter out = new BufferedWriter(new OuputStreamWriter(clientSocket.getOutputStream()))
+```
+- 데이터 송신
+	- flush()를 호출하면 스트림 속에 데이터를 남기지 않고 모두 전송
+``` JAVA 
+out.wrte("Hello" + "\n");
+out.flush();
+```
+- 데이터 수신 
+``` JAVA 
+int x = in.read(); //서버로부터 한 개의 문자 수신
+String line = in.readline(); //서버로부터 한 해으이 문자열 수신
+```
+- 소켓 닫기
+``` JAVA 
+clinetSocket.close();
+```
+
+#### ServerSocket 클래스
+##### ServerSocket 클래스
+- java.net 패키지에 포함
+- 데이터 송수신은 하지 않고 클라이언트 접속ㅂ만 받는 소켓
+- 주요 생성자
+| 생성자 | 설명 |    
+| :---: | :----: | 
+| ServerSocket(int port) | 소켓을 생성하여 지정된 포트 번호에 연결한다. |
+- 주요 메소드
+	- InputStream / OutputStream을 얻는 메소드가 없다.
+| 메소드 | 설명 |    
+| :---: | :----: | 
+| Socket accept() | 연결 요청을 기다리다 연결 요청이 들어오면 수락하고 새 Socket 객체를 반환|
+| void close() | 서버 소켓을 닫는다 |
+| InetAddress getInetAddress() | 서버 소켓에 연결된 로컬 주소 반환|
+| int getLocalPort() | 서버 소켓이 연결 요청을 모니터링하는 포트 번호 반환 |
+| boolean isBound() | 서버 소켓이 로컬 주소에 연결되어있으면 true 반환|
+| boolean isClosed() | 서버 소켓이 닫혀있으면 true 반환|
+| void setSoTimeout(int timeout)| accept()에 대한 타임 아웃 시간 지정. 0이면 타임아웃이 해제|
+	
+#### 클라이언트와 서버 연결
+- 클라이언트와 서버 연결
+	- 서버는 ServerSocket으로 들어오는 연결 요청을 기다림.
+	- 클라이언트 Socket이 서버의 ServerSocket에게 연결 요청.
+	- 서버의 ServerSocket이 연결 요청 수락하고 새로운 Socket을 만들어 클라이언트 Socket과 연결
+
+#### 서버 소켓 사용 절차
+- 서버 소켓 생성
+``` JAVA
+ServerSocket serverSocket = new ServerSocket(5550);
+```
+- 클라이언트로부터 접속 기다림
+	- accept() 메소드는 연결 요청이 오면 새로운 Socket 객체 반환
+	- 다음 클라이언트를 기다리기 위해 다시 accept() 호출
+``` JAVA
+Socket socket = serverSocket.accept();	
+```
+- 실제 데이터 송수신은 생성된 Socket이 담당
+	- Socket으로부터 InputStream / OutputStream을 얻어서 송수신
+``` JAVA
+BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+```
+- 클라이언트와의 연결 종료
+- 서버 역할 종료
+``` JAVA
+socket.close();
+serverSocket.close();
+```
+</div>
+</details>
