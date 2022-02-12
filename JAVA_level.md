@@ -83,7 +83,7 @@ public class PrintArray{
                                  
 #### copyOfRange() 메소드 사용 후
 ##### Source_Code
-- [solution1_level1_after](java_solution/solution1_af_level1/src/solution1_af_level1/Solution1_af_level1.java)
+- [solution1_af_level1](java_solution/solution1_af_level1/src/solution1_af_level1/Solution1_af_level1.java)
          
 ## 📝 Solution_2
 ### java.lang.Math 클래스
@@ -142,11 +142,11 @@ for(int num : list)
 ```
 #### before
 ##### Source_code
-- [solution2_level1]()
+- [solution2_level1](java_solution/solution2_level1/src/solution2_level1/Solution2_level1.java)
  
 #### after
 ##### Source_code
-- [solution2_af_level1]()
+- [solution2_af_level1](java_solution/solution2_af_level1/src/solution2_af_level1/Solution2_af_level2.java)
  
  </div>
 </details>
