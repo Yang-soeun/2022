@@ -1870,12 +1870,14 @@ public class TestThread{
 #### Socket 클래스
 - java.net 패키지에 포함
 - 주요 생성자
+	
 | 메소드 | 설명 |    
 | :---: | :----: |  	
 | Socket(InetAddress address, int port) | 소켓을 생성하여 지정된 IP 주소와 포트 번호에 연결한다. |
 | Socket(String host, int port)| 소켓을 생성하여 지정된 호스트와 포트 번호에 연결한다. 호스트 이름이 null인 경우는 루프백(loopback) 주소로 가정한다. |
 - C언어의 소켓 라이브러리는 소켓을 생성하고 명시적으로 서버 소켓에 연결 요청하는 반면, JAVA의 소켓 API는 소켓 생성시 자동으로 서버 소켓에 연결 요청
 - 주요 메소드
+	
 | 메소드 | 설명 |    
 | :---: | :----: |  	
 | void close() | 소켓을 닫는다. |
@@ -1922,11 +1924,14 @@ clinetSocket.close();
 - java.net 패키지에 포함
 - 데이터 송수신은 하지 않고 클라이언트 접속ㅂ만 받는 소켓
 - 주요 생성자
+	
 | 생성자 | 설명 |    
 | :---: | :----: | 
 | ServerSocket(int port) | 소켓을 생성하여 지정된 포트 번호에 연결한다. |
+	
 - 주요 메소드
 	- InputStream / OutputStream을 얻는 메소드가 없다.
+	
 | 메소드 | 설명 |    
 | :---: | :----: | 
 | Socket accept() | 연결 요청을 기다리다 연결 요청이 들어오면 수락하고 새 Socket 객체를 반환|
@@ -1966,5 +1971,75 @@ BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputS
 socket.close();
 serverSocket.close();
 ```
+
+#### URL을 이용한 웹 프로그래밍
+- URL이란?
+	- URL은 Uniform Resource Locator
+	- 인터넷 상의 리소스에 대한 주소
+- URL 구조
+##### http : //www.naver.com/
+	
+http - 프로토콜 식별자(protocol indetifier)
+	
+//www.naver.com/ - 자원 이름(resource name)
+	
+#### 프로토콜 식별자
+- 프로토콜 식별자
+	- 인터넷 상의 파일을 가져올 때 사용되는 통신 프로토콜 이름
+	- 종류: HTTP, FTP, TELNET 등
+	- 대부분의 웹 브라우저들은 HTTP 외 다른 프로토콜도 지원
+
+#### 자원 이름
+- 자원 이름은 사용되는 프로토콜에 따라서 그 구성이 달라짐
+- HTTP의 경우
+##### http : //www.myhome.net /index.html : 8080
+
+//www.myhome.net - 호스트 이름
+	
+/index.html - 파일 이름
+	
+: 8080 - 포트번호
+	
+#### 자바의 URL 클래스
+- URL 클래스
+	- java.net 패키지에 포함
+	- 웹 상의 자원을 지정하는 URL을 나타냄
+
+| 메소드 | 설명 |    
+| :---: | :----: | 
+| URL(String spec) | 문자열이 지정하는 자원에 대한 URL 객체를 생성 |
+| URL(Strimg protocol, String hostm int port, String file) | 프로토콜 식별자, 호스트 주소, 포트 번호, 파일이 지정하는 자원에 대한 URL 객체 생성 |
+| URL(String protocol, String host, String file)| 프로토콜 식별자, 호스트 주소, 파일 이름이 지정하는 자원에 대한 URL 객체 생성 |
+| URL(URK context, String spec) | URL 객체 contex에 대한 상대 경로가 지정하는 자원에 대한 URL 객체 생성 |
+
+- 주요 메소드
+	
+| 메소드 | 설명 |    
+| :---: | :----: | 
+| Object getContent() | URL의 컨텐트를 반환 |
+| String getFile() | URL 주소의 파일 이름 반환 |
+| String getHost() | URL 주소의 호스트 이름 반환 |
+| String getPath() | URL 주소의 경로 부분 반환 |
+| int getPort() | URL 주소의 포트 번호 반환 |
+| int getLocalPort() | 소켓이 연결된 로컬 포트 번호 반환 |
+| int getPort() | 소켓이 연결한 서버의 포트 번호 반환 |
+| InputStream openStream() | URL에 대해 연결을 설정하고 이 연결로부터 입력을 받을 수 있는 InputStream 객체 반환 |
+| URLConnection openConnection() | URL 주소의 원격 객체에 접속한 뒤 통신할 수 있는 URLConnection 객체 리턴 |
+	
+#### URL 객체 생성 방법
+- 절대 경로로 URL 객체 생성
+``` JAVA
+URL homePage =  new URL("http://news.hankooki.com");
+```
+- 상대 경로로 URL 객체 생성
+``` JAVA
+URL opinion = new URL(homePage, "opinion/editorial.htm");
+```
+- 잘못된 주소의 URL을 입력하면 MalformedURLException 예외 발생
+	
+#### URL 객체를 이용하여 상대편으로부터 데이터 읽기
+- URL 객체에서 데이터 읽기
+	- URL 객체가 가리키는 주소에서 데이터를 가져올 때는 openStream() 메소드로 스트림 생성
+	- openStream()이 리턴하는 InputStream 객체를 이용하여 일바 스트림 입력을 수행
 </div>
 </details>
