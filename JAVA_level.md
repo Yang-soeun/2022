@@ -149,6 +149,12 @@ for(int num : list){
 ##### Source_code
 - [solution2_af_level1](java_solution/solution2_af_level1/src/solution2_af_level1/Solution2_af_level2.java)
  
+## 📝 Solution_3
+#### Source_code
+- [solution3_level1](java_solution/solution3_level1/src/solution3_level1/Solution3_level1.java)
+	
+## 📝 Solution_4
+	
  </div>
 </details>
 
