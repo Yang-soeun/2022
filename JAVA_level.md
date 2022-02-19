@@ -334,7 +334,70 @@ a < b (좌측 값이 작은 경우) 음수
 	
 #### ⭐compareTo() 사용 후
 - [Source_code](java_solution/solution1_af_level2/src/solution1_af_level2/Solution1_af_level2.java)
+	
+## ✏ Solution_2
+## 📑 Q. H-Index
+- 문제설명
+	- 어떤 과학자가 발표한 논문 n편 중, h번 이상 인용된 논문이 h편 이상이고 나머지 논문이 h번 이하 인용되었다면 h의 최댓값이 이 과학자의 H-Index이다.
+	- 어떤 과학자가 발표한 논문의 인용 횟수를 담은 배열 citations가 매개변수로 주어질 때, 이 과학자의 H-Index를 return 하도록 solution 함수 작성.
 
+✔ 제한 사항
+- 과학자가 발표하는 논문의 수는 1편 이상 1,000 이하이다.
+- 논문별 인용 횟수는 0회 이상 10.000회 이하이다.
+	
+💡 입출력 예
+	
+| citations | return |    
+| :---: | :----: |    
+| [3, 0, 6, 1, 5] | 3 |  
+	
+### 📚 Source_code
+⭐ [solution3_level2](java_solution/solution2_level2/src/solution2_level2/Solution2_level2.java)
+
+## ✏ Solution_3
+### Set 컬렉션
+- set 인터페이스를 구현한 컬렉션 클래스
+	- HashSet< E >
+	- TreeSet< E >
+- 특징
+	- 요소의 저장 순서를 유지하지 않는다.
+	- 같은 요소의 중복 저장을 허용하지 않는다.
+	
+#### HashSet< E > 클래스
+- Set 컬레션 클래스에서 가장 많이 사용되는 클래스 중 하나이다.
+- ` 해시 알고리즘 ` 을 사용하여 검색 속도가 매우 빠르다.
+- 내부적으로 HashMap 인스턴스를 사용하여 요소를 저장.
+	
+` 해시 알고리즘 `
+![해시 알고리즘](https://user-images.githubusercontent.com/87464750/154821847-e520d760-1f6e-4ae6-8300-78fb110c22c3.png)
+	
+- 배열과 연결 리스트로 구현된다.
+- 저장할 데이터의 키 값을 해시 함수에 넣어 반환되는 값으로 배열의 인덱스를 구한다.
+- 그리고 해당 인덱스에 저장된 연결 리스트에 데이터를 저장하게 된다.
+	
+#### ` String substring(int beginIndex) ` : 해당 문자열의 전달된 인덱스부처 끝까지를 새로운 문자열로 반환.
+#### ` String substring(int begin, int end) ` : 해당 문자열의 전달된 인덱스부터 마지막 인덱스까지를 새로운 문자열로 반환.
+	
+## 📑 Q. 소수 찾기
+- 문제 설명
+	- 각 종이 조각에 숫자가 적힌 문자열 numbers가 주어졌을때, 종이 조각으로 만들 수 있는 소수가 몇 개인지 return 하도록 solution 함수를 작성.
+	
+✔ 제한 사항
+- numbers는 길이 1 이상 7 이하인 문자열이다.
+- numbers는 0~9까지 숫자만으로 이루어져 있다.
+- "013"은 0, 1, 3 숫자가 적힌 종이 조각이 흩어져있다는 의미이다.
+
+💡 입출력 예
+| numbers | return |    
+| :---: | :----: |    
+| "17" | 3 |  
+| "011" | 2 |  
+	
+### 📚 Source_code
+#### ⭐ HashSet<> 
+- [solution3_level2](java_solution/solution3_level2/src/solution3_level2/Solution3_level2.java)
+	
+	
  </div>
 </details>
 
