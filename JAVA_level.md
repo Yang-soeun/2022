@@ -283,7 +283,7 @@ String kor = h.get("apple");// 키로 값 검색
 <summary> 📙 level_2 </summary>
 <div markdown="1">
 
-## ✏ Solution_1
+## ✏ Solution_1_정렬
 ### 람다식 기본 문법
 `(매개변수) -> {실행문(명령문)}`
 	
@@ -335,7 +335,7 @@ a < b (좌측 값이 작은 경우) 음수
 #### ⭐compareTo() 사용 후
 - [Source_code](java_solution/solution1_af_level2/src/solution1_af_level2/Solution1_af_level2.java)
 	
-## ✏ Solution_2
+## ✏ Solution_2_
 ## 📑 Q. H-Index
 - 문제설명
 	- 어떤 과학자가 발표한 논문 n편 중, h번 이상 인용된 논문이 h편 이상이고 나머지 논문이 h번 이하 인용되었다면 h의 최댓값이 이 과학자의 H-Index이다.
@@ -354,7 +354,7 @@ a < b (좌측 값이 작은 경우) 음수
 ### 📚 Source_code
 ⭐ [solution3_level2](java_solution/solution2_level2/src/solution2_level2/Solution2_level2.java)
 
-## ✏ Solution_3
+## ✏ Solution_3_완전탐색
 ### Set 컬렉션
 - set 인터페이스를 구현한 컬렉션 클래스
 	- HashSet< E >
@@ -397,7 +397,95 @@ a < b (좌측 값이 작은 경우) 음수
 #### ⭐ HashSet<> 
 - [solution3_level2](java_solution/solution3_level2/src/solution3_level2/Solution3_level2.java)
 	
+## ✏ Solution_4_완전탐색
+## 📑 Q. 카펫
+- 문제 설명
+	- Leo는 카펫을 사러 갔다가 아래 그림과 같이 중앙에는 노란색으로 칠해져 있고 테두리 1줄은 갈색으로 칠해져 있는 격자 모양 카펫을 봤다.
+	- Leo는 집으로 돌아와서 아까 본 카펫의 노란색과 갈색으로 색칠된 격자의 개수는 기억했지만, 전체 카펫의 크기는 기억하지 못했다.
+	- Leo가 본 카펫에서 갈색 격자의 수 brown, 노란색 격자의 수 yellow가 매개변수로 주어질 때 카펫을 가로, 세로 크기를 순서대로 배열에 담아 return 하도록 하는 함수 작성.
+
+![카펫](https://user-images.githubusercontent.com/87464750/154912651-f71a737c-20fb-4191-a8ae-eaaffdf08d59.png)	
+
+✔ 제한 사항
+- 갈색 격자의 수 brown은 8이상 5,000 이하인 자연수이다.
+- 노란색 격자의 수 yellow는 1이상 2,000,000 이하인 자연수이다.
+- 카펫의 가로 길이는 세로 길이와 같거나, 세로 길이보다 길다.
 	
+💡 입출력 예
+| brown | yellow | return |
+| :---: | :----: | :----: |    
+| 10 | 2 | [4, 3] |
+| 8 | 1 | [3, 3] | 
+| 24 | 24 | [8, 6] | 
+
+### 📚 Source_code
+- ⭐ [solution4_level2](java_solution/solution4_level2/src/solution4_level2/Solution4_level2.java)
+	
+## ✏ Solution_5_해시
+## 📑 Q. 전화번호 목록
+- 문제 설명
+	- 전화번호가 다음과 같을 경우, 구조대 전화번호는 영석이의 전화번호의 접두사입니다.
+		- 구조대: 119
+		- 박준영: 97674223
+		- 지영석: 1195524421
+	- 전화번호부에 적힌 전화번호를 담은 배열 phone_book이 solution함수의 매개변수로 주어질때, 어떤 번호가 다른 번호의 접두어인 경우가 있으면 false를 그렇지 않으면 true를 return 하도록 solution함수를 작성
+
+✔ 제한 사항
+- phone_book의 길이는 1 이상 1,000,000 이하이다.
+- 각 전화번호의 길이는 1 이상 20 이하이다.
+- 같은 전화번호가 중복해서 들어있지 않다.
+	
+💡 입출력 예
+| phone_book | return |
+| :---: | :----: | 
+| ["119", "97674223", "1195524421"] | false |
+| ["123","456","789"] | true | 
+| ["12","123","1235","567","88"] | false | 
+	
+### 📚 Source_code
+##### 처음
+- 2중 for-loop을 사용하여 모든 배열의 원소를 비교하여 접두어가 있는 경우 확인
+- [solution5_level2](java_solution/solution5_level2/src/solution5_level2/Solution5_level2.java)
+- 실행결과 효율성에서 시간 초과로 통과하지 못함.
+
+![실행결과](https://user-images.githubusercontent.com/87464750/154915119-d4b0f91a-e7ca-4bff-b85c-b7fe7f68fbdb.png)
+
+##### 효율성 높임
+- String 배열을 정렬하면 전화번호의 길이와 상관이 작은 수가 먼저 오도록 배열이 정렬됨.
+- 그래서 다음 인덱스의 전화번호만 비교하면 된다.
+- ⭐[solution5_re_level2](java_solution/solution5_re_level2/src/solution5_re_level2/Solution5_re_level2.java)
+	
+## ✏ Solution_6_해시
+## 📑 Q. 위장
+- 문제 설명
+	- 스파이들은 매일 다른 옷을 조합하여 입어 자신을 위장한다.
+	- 스파이가 가진 의상들이 담기 2차원 배열 clothes가 주어질 때 서로 다른 옷의 조합의 수를 return 하도록 solution 함수 작성.
+> ex) 스파이가 가진 옷이 아래와 같고 오늘 스파이가 동그란 안경, 긴 코트, 파란색 티셔츠를 입었다면 다음날은 청바지를 추가로 입거나 동그란 안경 대신 검정 선글라스를 착용해야 한다.
+	
+| 종류 | 이름 |
+| :---: | :----: | 
+| 얼굴 | 동그란 안경, 검정 선글라스 |
+| 상의 | 파란색 티셔츠 | 
+| 하의 | 청바지 | 
+| 겉옷 | 긴 코트 | 
+	
+✔ 제한 사항
+- clothes의 각 행은 [의상의 이름, 의상의 종류]로 이루어져 있다.
+- 스파이가 가진 의상의 수는 1개 이상 30개 이하이다.
+- 같은 이름을 가진 의상은 존재하지 않는다.
+- clothes의 모든 원소는 문자열로 이루어져 있다.
+- 모든 문자열의 길이는 1 이상 20 이하인 자연수이고 알파벳 소문자 또는 '-' 로만 이루어져 있다.
+- 스파이는 하루에 최소 한 개의 의상을 입는다.
+	
+💡 입출력 예
+| clothes | return |
+| :---: | :----: | 
+| [["yellowhat", "headgear"], ["bluesunglasses", "eyewear"], ["green_turban", "headgear"]] | 5 |
+| [["crowmask", "face"], ["bluesunglasses", "face"], ["smoky_makeup", "face"]] | 3 | 
+	
+### 📚 Source_code
+- ⭐ [solution6_level2](java_solution/solution6_level2/src/solution6_level2/Solution6_level2.java)
+
  </div>
 </details>
 
