@@ -1,8 +1,17 @@
-# 📖 JAVA_Solution
+# 📖 JAVA_Solution_BAEKJOON
+<details>
+
+<summary> 📗 while </summary>
+<div markdown="1">
+	
+ </div>
+</details>
+
+# 📖 JAVA_Solution_programmers
 
 <details>
 
-<summary>📗 level_1 </summary>
+<summary> 📗 level_1 </summary>
 <div markdown="1">
  
 ## ✏ Solution_1_정렬
