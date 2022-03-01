@@ -1,9 +1,80 @@
 # 📖 JAVA_Solution_BAEKJOON
 <details>
 
-<summary> 📗 while </summary>
+<summary> 📗 BufferedReader/Writer </summary>
 <div markdown="1">
 	
+### BufferedReader
+- 입력된 데이터가 바로 전달되지 않고 버퍼를 거쳐 전달되므로 데이터 처리 효율성을 높임.
+	- 많은 양의 데이터를 처리할때 유리.
+- Enter만 경계로 인식하고 받은 데이터가 string으로 고정되기 때문에 입력받은 데이터를 가공하는 작업이 필요한 경우가 많다.
+	
+#### 💡 BufferedReader 사용법
+	
+```
+BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+String s = bf.readLine();
+int i = Integer.parseInt(bf.readLine());//형변환
+```
+	
+- readline() 메소드
+	- 리턴값이 String으로 고정되기 때문에 String이 아닌 다른 타입으로 입력을 받으려면 형변환을 해야한다.
+		- ex) Integer.parseInt()
+- 예외처리
+	- try & catch
+	- throwsIOException
+- throw 이용방법
+	- 1️⃣ 클래스 import
+		- ` import java.io.IOException `
+	- 2️⃣ main 클래스 옆에 throwsIOException 작성
+		- ` public static void main(String[] args) throwsIOException{} `
+	
+### 공백 단위로 데이터를 가공하는 작업
+#### 방법1 StringTokenizer 의 nextTo()
+##### StringTokenizer의 생성자
+1️⃣ ` StringTokenizer st = new StringTokenizer(문자열); ` -> 띄어쓰기 기준으로 문자열 분리
+	
+2️⃣ ` StringTokenizer st = new StringTokenizer(문자열, 구분자); ` -> 구분자를 기준으로 문자열을 분리
+	
+3️⃣ ` StringTokenizer st = new StringTokenizer(문자열, 구분자, true/false) ` -> 구분자를 기준으로 문자열을 분리할 때, 구분자는 토큰으로 넣을지(true) 구분자는 분리된 문자열 토큰에 포함 시키기 않을지(false)
+	
+| return | 메소드 | 기능 |    
+| :---: | :----: | :----: |    
+| boolean | hasMoreTokens() | 남아있는 토큰이 있으면 true를 리턴, 더 이상 토큰이 없으면 false 리턴 | 	
+| String | nextToken() | 객체에서 다음 토큰을 반환 | 
+| String | nextToken(String delim) | delim 기준으로 다음 토큰을 반환 | 
+| Object | nextElement() | nextToken 메서드와 동일하지만 문자열이 아닌 객체를 리턴 | 
+| int | countTokens() | 총 토큰의 개수를 리턴 | 
+	
+#### 방법2 String.split()
+- String[] split(String regex)
+	- 해당 문자열을 전달된 정규 표현식(regular expression)에 따라서 나눠서 반환.
+	
+#### 💡 데이터 가공 사용
+```
+StringTokenizer st = new StringTokenizer(s);//인자로 입력 문자열을 넣음
+int a = Integer.parseInt(st.nextToken());//첫번째
+int b = Integer.parseInt(st.nextToken());//두번째
+	
+//String.split()
+String array[] = s.split(" ");//공백을 기준으로 배열에 넣음
+```	
+	
+### BufferedWriter
+- 버퍼를 잡아 놓았기 때문에 flush() / close() 를 반드시 호출해줘야함.
+- 자동개행 기능이 없기 때문에 개행을 해줘야할 경우 \n을 따로 처리해야함.
+	
+#### 💡 BufferedWriter 예시
+```
+BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out))
+String s = "message";//출력할 문자열
+
+bw.write(s);
+bw.flush();
+bw.close();
+```
+	
+
  </div>
 </details>
 
