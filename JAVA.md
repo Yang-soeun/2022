@@ -1,8 +1,8 @@
-# 📌JAVA 실습
+# 📒JAVA 실습
 
 <details>
 
-<summary> 입출력 </summary>
+<summary> ✏ 입출력 </summary>
 <div markdown="1">
   
 - Scanner 객체
@@ -94,7 +94,7 @@ public class Lab1_2 {
 
 <details>
 
-<summary> 조건문과 반복문 </summary>
+<summary> ✏ 조건문과 반복문 </summary>
 <div markdown="1">
 
 #### 단순 if 문
@@ -333,7 +333,7 @@ public class Lab2_3 {
 
 <details>
 
-<summary> 배열 </summary>
+<summary> ✏ 배열 </summary>
 <div markdown="1">
 	
 #### 배열
@@ -390,7 +390,7 @@ public class Lab2_3 {
 
 <details>
 
-<summary> 클래스와 객체 </summary>
+<summary> ✏ 클래스와 객체 </summary>
 <div markdown="1">
 
 ## 객체지향 프로그래밍이란?
@@ -654,7 +654,7 @@ public class ComplexTest {
 
 <details>
 
-<summary> 상속의 이해</summary>
+<summary> ✏ 상속의 이해</summary>
 <div markdown="1">
 
 ## 상속
@@ -947,7 +947,7 @@ public class MouseDriver implements USBMouseInterface {//인터페이스 구현
 
 <details>
 
-<summary> 예외 처리 및 입출력 </summary>
+<summary> ✏ 예외 처리 및 입출력 </summary>
 <div markdown="1">
 
 ## 예외 처리(Exception Handling)
@@ -1171,7 +1171,7 @@ fout.close();
 
 <details>
 
-<summary> 패키지 </summary>
+<summary> ✏ 패키지 </summary>
 <div markdown="1">
 	
 ## 자바의 패키지(package)
@@ -1357,7 +1357,7 @@ String str3 = new String("abcd");//str2와 str3은 모두 "abcd" 스트링
 
 <details>
 
-<summary> 제네릭과 컬렉션 </summary>
+<summary> ✏ 제네릭과 컬렉션 </summary>
 <div markdown="1">
 
 ## 컬렉션(collection)의 개념
@@ -1634,7 +1634,7 @@ GenericMethodEx.toStack(sa, gss);//타입 매개 변수 T를 String 으로 유�
 
 <details>
 
-<summary> 스레드와 멀티태스킹 </summary>
+<summary> ✏ 스레드와 멀티태스킹 </summary>
 <div markdown="1">
 	
 #### 멀티태스킹(multi-tasking) 개념
@@ -1820,7 +1820,7 @@ public class TestThread{
 	
 <details>
 
-<summary> 네트워크 </summary>
+<summary> ✏ 네트워크 </summary>
 <div markdown="1">
 	
 #### TCP/IP 소개
