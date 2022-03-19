@@ -11,17 +11,6 @@ import java.util.Scanner;
 */
 
 public class Math_11653 {
-
-	public static boolean check(int a) {//소수를 판별하는 함수
-		if(a == 0 || a == 1)
-			return false;
-		
-		for(int i =2; i<a; i++) {
-			if(a % i == 0)
-				return false;
-		}
-		return true;
-	}
 	
 	public static void main(String[] args) throws IOException{
 		// TODO Auto-generated method stub
@@ -29,22 +18,17 @@ public class Math_11653 {
 		Scanner in = new Scanner(System.in);
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		int n = in.nextInt();
-		int i = 2;
 		
-		while(true) {
-			if(check(n)== true) {
-				bw.write(n + "\n");
-				break;
-			}
-			else if(n%i == 0 && check(i)) {
-				n = n/i;
+		for(int i = 2; i<= Math.sqrt(n); i++) {
+			while(n%i == 0) {
 				bw.write(i + "\n");
+				n/=i;
 			}
-			else
-				i++;
 		}
+		if(n!=1)//소수인 경우
+			bw.write(n+"\n");
+		
 		bw.close();
-	
 	}
 
 }
