@@ -537,27 +537,3 @@
   
  </div>
 </details>
-
-<details>
-
-<summary> ✏ SQL 기본 </summary>
-<div markdown="1">
-  
- </div>
-</details>
-
-<details>
-
-<summary> ✏ SQL 활용 </summary>
-<div markdown="1">
-  
- </div>
-</details>
-
-<details>
-
-<summary> ✏ SQL 최적화 기본 원리 </summary>
-<div markdown="1">
-  
- </div>
-</details>
