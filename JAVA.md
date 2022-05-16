@@ -2062,7 +2062,7 @@ URL opinion = new URL(homePage, "opinion/editorial.htm");
 	- AWT - java.awt 패키지
 	- Swing - javax.swing 패키지
 
-#### AWT와 Swing 패키지\
+#### AWT와 Swing 패키지
 ##### AWT
 - 자바가 처음 나왔을때 함께 배포된 GUI 라이브러리
 - java.awt 패키지
@@ -2077,8 +2077,76 @@ URL opinion = new URL(homePage, "opinion/editorial.htm");
 	- 경량 컴포넌트
 
 `AWT를 사용하면 OS마다 컴포넌트 모양이 달라지거나 Swing을 사용하면 항상 같은 모양 `
-
 	
+##### GUI 클래스 계층 
+![image](https://user-images.githubusercontent.com/87464750/168545797-b09aa8e6-f70e-4a9e-ba8d-63820cfe897a.png)
+	
+#### 컴포넌트와 컨테이너
+##### 컴포넌트
+- 버튼, 텍스트 필드 등의 GUI 객체들
+- Windows에서는 컨트롤이라고도 부름
+##### 컨테이너
+- 다른 컴포넌트를 포함할 수 있는 컴포넌트
+- 다른 컨테이너에 포함될 수도 있음
+	- Swing 컨테이너: JPanel, JFrame, JApplet, JDialog, JWindow
+##### 최상위 컨테이너
+- 다른 컨테이너에 속하지 않고 독립적으로 존재 가능한 컨테이너
+	- 스스로 화면에 자신을 출력하는 컨테이너
+	- JFrame, JDialog, JApplet
+- 모든 컴포넌트는 컨테이너에 포함되어야 화면에 출력 가능
+	
+#### Swing GUI 프로그램 만들기
+1. 프레임 만들기
+2. 프레임에 스윙 컴포넌트 붙이기
+3. main() 메소드 작성
+	
+- 스윙 프로그램을 작성하기 위한 import문
+	- import java.awt.*; //그래픽 처리를 위한 클래스들의 경로명
+	- import java.awt.event.*;// AWT 이벤트 사용을 위한 경로명
+	- import javax.swing.*;// 스윙 컴포넌트 클래스들의 경로명
+	- import javax.swing.event.*;// 스윙 이벤트를 위한 경로명
+	
+#### Swing 프레임
+- 모든 Swing 컴포넌트를 담는 최상위 컨테이너
+	- JFrame 타입의 객체
+- Swing 프레임(JFrame)의 기본 구성
+	- 프레임 - 스윙 프로그램의 기본 틀
+	- 메뉴바 - 메뉴들이 부착되는 공간
+	- 컨텐트 팬 - GUI 컴포넌트들이 부착되는 공간
+	
+#### 프레임 만들기
+`다양한 방법이 있음`
+
+1. main() 메소드에서 JFrame 객체 생성
+2. JFrame을 상속받은 프레임 클래스 생성
+3. JFrame을 상속받은 별도의 클래스 정의해도 됨
+4. 무명 클래스로 정의해도 됨
+	
+#### 프레임에 컴포넌트 붙이는 다양한 방법
+1. 컨텐트팬에 붙이기
+``` JAVA
+	JFrame frame = new Jframe();
+	frame.getContentPane().add(new JButton("Click"));
+```
+프레임에 직접 붙이기
+``` JAVA
+	JFrame frame = new Jframe();
+	frame.add(new JButton("Click"));
+```
+2. 컨텐트팬에 패널을 얹고 붙이기
+``` JAVA
+	JFrame frame = new Jframe();
+	JPanel p = new JPanel();
+	p.add(new JButton("Click"));
+	frame.getContentPane().add(p);
+```
+3. 컨텐트팬을 패널로 바꾸고 붙이기
+``` JAVA
+	JFrame frame = new Jframe();
+	JPanel p = new JPanel();
+	p.add(new JButton("Click"));
+	frame.setContentPane(P);
+```	
 </div>
 </details>
 	
@@ -2151,7 +2219,6 @@ URL opinion = new URL(homePage, "opinion/editorial.htm");
 | AdjustmentEvent| JScrollBar | 스크롤바를 사용자가 움직였을 때|
 | ComponentEvent | Component |  모든 컴포넌트에 대해, 컴포넌트가 사라지거나, 나타나거나, 이동하거나 크기 변경될 때 |
 | ContainerEvent | Container | Container에 컴포넌트가 추가 혹은 삭제되었을 때|
-
 
 
 
