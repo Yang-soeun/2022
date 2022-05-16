@@ -2147,6 +2147,57 @@ URL opinion = new URL(homePage, "opinion/editorial.htm");
 	p.add(new JButton("Click"));
 	frame.setContentPane(P);
 ```	
+	
+#### 스윙 응용프로그램의 종료
+- 프레임 종료버튼(X)이 클리되면 일어나는 일
+	- 프레임이 화면에서 보이지 않게 됨
+	- 그러나, 응용프로그램이 종료한 것이 아님
+		- 다시 setVisible(true)를 호출하면 보이게 되고 이전처럼 작동함
+- 프레임 종료버튼이 클릭될 때 응용 프로그램이 종료하도록 하는 방법
+`frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);`
+	
+#### main() 종료 뒤에도 프레임이 살아있는이유
+- Swing 프로그램이 실행되는 동안 생성되는 스레드
+	-  메인 스레드
+		- main()을 실행하는 스레드
+		- 자바 응용프로그램의 실행을 시작한 스레드
+	- 이벤트 처리 스레드
+		- 스윙 응용프로그램이 실행될 때 자동으로 실행되는 스레드
+		- 이벤트 처리 스레드의 역할
+			- 프레임과 버튼 등 GUI 화면 그리기
+			- 키나 마우스 입력을 받아 이벤트를 처리할 코드 호출
+- Swing 프로그램 main() 종료 뒤에도 살아있는 이유
+	- 이벤트 처리 스레드가 살아 있으므로
+	
+#### 컨테이너와 배치 개념
+- 컨테이너마다 하나의 배치관리자가 존재하며, 삽입되는 모든 컴포넌트의 위치와 크기를 결정하고 적절히 배치한다.
+- 컨테이너의 크기가 변하면 내부 컴포넌트들의 위치와 크기를 모두 재조절하고 재배치한다.
+	
+#### 배치 관리자 대표 유횽 4가지
+##### FlowLayout
+![image](https://user-images.githubusercontent.com/87464750/168552501-22b7ff58-91d3-4a25-b112-1327d5137df3.png)
+	
+##### BorderLayout
+![image](https://user-images.githubusercontent.com/87464750/168552576-71c42020-f3f3-4628-9190-6e21c5b8431b.png)
+	
+##### GridLayout
+![image](https://user-images.githubusercontent.com/87464750/168552656-f5be847a-e684-4ce4-99b5-93edf0a011bb.png)
+
+##### CardLayout
+![image](https://user-images.githubusercontent.com/87464750/168552680-3e2433b4-1649-4381-873c-9a907a2b29d5.png)
+	
+#### 컨테이너와 배치관리자
+- 컨테이너의 디폴트 배치관리자
+	- 컨테이너는 생성시 디폴트 배치관리자가 지정되어 있음
+	
+| AWT와 스윙 컨테이너 | 디폴트 배치관리자 |  
+| :---: | :---: |
+| Window, Jwindow | BorderLayout | 
+| Frame, JFrame | BorderLayout | 
+| Dialog, JDialog | BorderLayout  | 
+| Panel, JPanel | FlowLayout | 
+| Applet, JApplet | FlowLayout  | 
+	
 </div>
 </details>
 	
@@ -2219,7 +2270,6 @@ URL opinion = new URL(homePage, "opinion/editorial.htm");
 | AdjustmentEvent| JScrollBar | 스크롤바를 사용자가 움직였을 때|
 | ComponentEvent | Component |  모든 컴포넌트에 대해, 컴포넌트가 사라지거나, 나타나거나, 이동하거나 크기 변경될 때 |
 | ContainerEvent | Container | Container에 컴포넌트가 추가 혹은 삭제되었을 때|
-
 
 
 </div>
