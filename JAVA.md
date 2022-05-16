@@ -2049,6 +2049,36 @@ URL opinion = new URL(homePage, "opinion/editorial.htm");
 <summary> ✏ GUI 컴포넌트와 스윙 </summary>
 <div markdown="1">
 	
+#### 자바의 GUI
+##### GUI의 목적
+- 그래픽을 이용, 사용자에게 이해하기 쉬운 모양으로 정보 제공
+- 사용자는 마우스나 키보드를 이용하여 쉽게 입력	
+##### 자바 GUI 특징
+- 강력한 GUI 컴포넌트 제공
+- 쉬운 GUI 프로그래밍
+##### 자바의 GUI 프로그래밍 방법
+- GUI 컴포넌트와 그래픽 이용
+	- AWT 패키지와 swing 패키지에 제공되는 메커니즘 이용
+	- AWT - java.awt 패키지
+	- Swing - javax.swing 패키지
+
+#### AWT와 Swing 패키지\
+##### AWT
+- 자바가 처음 나왔을때 함께 배포된 GUI 라이브러리
+- java.awt 패키지
+- 운영체제에 의존적
+	- OS의 도움을 받아야 화면에 출력되며 동작하는 컴포넌트. 운영체제에 많은 부담
+##### Swing
+- AWT 기술을 기반으로 개선된 GUI 라이브러리
+	- 모든 AWT 기능 + 추가된 풍부하고 화려한 고급 컴포넌트
+- 클래스 이름이 J로 시작
+- javax.swing 패키지
+- Swing 컴포넌트는 운영체제에 의존하지 않음
+	- 경량 컴포넌트
+
+`AWT를 사용하면 OS마다 컴포넌트 모양이 달라지거나 Swing을 사용하면 항상 같은 모양 `
+
+	
 </div>
 </details>
 	
