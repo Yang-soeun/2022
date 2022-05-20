@@ -2175,12 +2175,34 @@ URL opinion = new URL(homePage, "opinion/editorial.htm");
 	
 #### 배치 관리자 대표 유횽 4가지
 ##### FlowLayout
+- 배치방법: 컨테이너 공간 내에 왼쪽에서 오른쪽으로 배치, 다시 위에서 아래로 순서대로 컴포넌트를 배치한다.
+- 컨테이너 크기가 변하면 배치 관리자에 의해 재배치됨.
+- 프레임의 크기를 바꾸면 배치도 변한다.
+	
+` container.setLayout(new flowLayout()); `
+	
 ![image](https://user-images.githubusercontent.com/87464750/168552501-22b7ff58-91d3-4a25-b112-1327d5137df3.png)
 	
 ##### BorderLayout
+- 배치방법: 
+	- 컨테이너 공간을 5구역으로 분할, 배치
+	- East, west, South, North, Center
+	- add(Component comp, int index)
+		- comp를 index의 공간에 배치
+	- 컨테이너의 크기가 변하면 재배치
+	
+`container.setLayout(new BorderLayout());`
+	
 ![image](https://user-images.githubusercontent.com/87464750/168552576-71c42020-f3f3-4628-9190-6e21c5b8431b.png)
 	
 ##### GridLayout
+- 배치방법: 컨테이너 공간을 동일한 사각형 격자(그리드)로 분할하고 각 셀에 하나의 컴포넌트 배치
+	- 격자 구성은 생성자에 행수와 열수 지정
+	- 셀에 왼쪽에서 오른쪽으로, 다시 위에서 아래로 순서대로 배치
+	- 컨테이너 크기가 변하면 재배치
+	
+`container.setLayout(new GridLayout(4, 3));`
+	
 ![image](https://user-images.githubusercontent.com/87464750/168552656-f5be847a-e684-4ce4-99b5-93edf0a011bb.png)
 
 ##### CardLayout
@@ -2197,6 +2219,19 @@ URL opinion = new URL(homePage, "opinion/editorial.htm");
 | Dialog, JDialog | BorderLayout  | 
 | Panel, JPanel | FlowLayout | 
 | Applet, JApplet | FlowLayout  | 
+	
+#### 배치관리자가 없는 컨테이너
+- 배치관리자가 없는 컨테이너 개념
+	- 응용프로그램에서 컴포넌트의 절대 크기와 절대 위치 결정
+- 컨테이너의 배치 관리자 제거 방법
+	- container.setLayout(null);
+	
+``` JAVA
+	//JPanel의 배치관리자를 삭제하는 예
+	
+	JPanel p = new JPanel();
+	p.setLayout(null);
+```
 	
 </div>
 </details>
