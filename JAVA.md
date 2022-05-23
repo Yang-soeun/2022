@@ -2310,6 +2310,28 @@ URL opinion = new URL(homePage, "opinion/editorial.htm");
 | ComponentEvent | Component |  모든 컴포넌트에 대해, 컴포넌트가 사라지거나, 나타나거나, 이동하거나 크기 변경될 때 |
 | ContainerEvent | Container | Container에 컴포넌트가 추가 혹은 삭제되었을 때|
 
-
+##### 이벤트 리스너
+- 이벤트 리스너란?
+	- 이벤트를 처리하는 코드
+- JDK에서 이벤트 리스너 작성을 위한 인터페이스 제공
+	- 개발자는 리스너 인터페이스의 모든 추상 메소드를 구현해야 함
+	- 이벤트가 발생ㄹ하면 이미 약속된 메소드 호출
+> ex) ActionListener 인터페이스
+	
+``` JAVA
+	interface ActionListener{//아래 메소드를 개발자가 구현해야 함
+	public void actionPerformed(ActionEvent e);// Action 이벤트 발생시 호출
+	}
+```
+	
+``` JAVA
+	interface MouseListener{//아래의 5개 메소드를 개발자가 구현해야 함
+	public void mousePressed(MouseEvent e);//마우스 버튼이 눌러지는 순간 호출
+	public void mouseRelease(MouseEvent e);//눌러진 마우스 버튼이 떼이지는 순간 호출
+	public void mouseClicked(MouseEvent e);//마우스가 클릭되는 순간 호출
+	public void mouseEnterd(MouseEvent e);//마우스가 컴포넌트 위에 올라가는 순간 호출
+	public void mouseExited(MouseEvent e);//마우스가 컴포넌트 위에서 내려오든 순간 
+	}
+```
 </div>
 </details>
