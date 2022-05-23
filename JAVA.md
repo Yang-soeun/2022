@@ -2232,7 +2232,11 @@ URL opinion = new URL(homePage, "opinion/editorial.htm");
 	JPanel p = new JPanel();
 	p.setLayout(null);
 ```
-	
+
+- 컴포넌트의 크기와 위치 설정
+	- 컴포넌트 크기 설정: component.setSize(int width, injt height);
+	- 컴포넌트 위치 설정: component.setLocation(int x, int y);
+	- 컴포넌트 위치와 크기 동시 설정: component.setBounds(int x, int y, int width, int height);
 </div>
 </details>
 	
