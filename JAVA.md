@@ -1,4 +1,4 @@
-# 📒JAVA 실습
+# 📒JAVA
 
 <details>
 
