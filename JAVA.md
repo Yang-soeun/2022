@@ -2330,8 +2330,30 @@ URL opinion = new URL(homePage, "opinion/editorial.htm");
 	public void mouseRelease(MouseEvent e);//눌러진 마우스 버튼이 떼이지는 순간 호출
 	public void mouseClicked(MouseEvent e);//마우스가 클릭되는 순간 호출
 	public void mouseEnterd(MouseEvent e);//마우스가 컴포넌트 위에 올라가는 순간 호출
-	public void mouseExited(MouseEvent e);//마우스가 컴포넌트 위에서 내려오든 순간 
+	public void mouseExited(MouseEvent e);//마우스가 컴포넌트 위에서 내려오든 순간 호출
 	}
 ```
+	
+##### 이벤트 리스너 등록
+- 이벤트 리스너 등록
+	- 이벤트를 받아 처리하고자 하는 컴포넌트에 이벤트 리스너 등록
+- 이벤트 리스너 등록
+	- Component.addXXXListener(listener)
+		- XXX: 이벤트 명
+		- listener: 이벤트 리스너 객체
+		- ex) addMouseListener(), addActionsListener(), addFocusListner() 등
+- 이벤트 리스너가 등록된 컴포넌트만 이벤트에 반응
+	
+##### 리스너 인터페이스와 메소드
+
+| 리스너 인터페이스 | 리스너 메소드 | 메소드가 호출되는 경우 |    
+| :---: | :---: | :----: | 
+| ActionListener | actionPerformed(ActionEvent) |  ActionEvent가 발생하는 경우|
+| ItemListener| itemStateChanged(ItemEvent) | ItemEvent가 발생하는 경우|
+| KeyListener| KeyPressed(KeyEvent)| 키가 눌러질때|
+| | KeyReleased(KeyEvent) | 눌러진 키가 떼어질때|
+| | KeyTyped(KeyEvent)| 키가 입력될때|
+	
+	
 </div>
 </details>
