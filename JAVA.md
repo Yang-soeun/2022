@@ -2353,6 +2353,26 @@ URL opinion = new URL(homePage, "opinion/editorial.htm");
 | KeyListener| KeyPressed(KeyEvent)| 키가 눌러질때|
 | | KeyReleased(KeyEvent) | 눌러진 키가 떼어질때|
 | | KeyTyped(KeyEvent)| 키가 입력될때|
+| MouseListener | mouseDragged(MouseEvent)| 마우스를 임의의 컴포넌트 위에서 드래깅할때|
+| | mouseMoved(MouseEvent)| 마우스를 임의의 컴포넌트 위에서 움직힐때|
+| FocusListener | focusGained(FocusEvent)| 컴포넌트가 포커스를 받을때|
+|| focusLost(FocusEvent)| 컴포넌트가 포커스를 잃을때|
+| TextListener | textValueChanged(TextEvent)| 텍스트가 변경될때|
+| WindowListener | windowOpened(WindowEvent)| 윈도우가 생성되어 처음으로 보이게 될 때|
+| | windowClosing(WindowEvent) | 사용자가 윈도우의 시스템 메뉴에서 윈도우 닫기를 시도할 때|
+|| windowIconfied(WindowEvent) | 윈도우가 보통 크기에서 아이콘화될때|
+|| windowDeiconfied(WindowEvent) | 아이콘 상태의 윈도우가 보통 상태로 복귀할때|
+|| windowClosed(WindowEvent)| 윈도우 닫기 절차에 의해 윈도우가 닫혔을때 |
+|| windowActivated(WindowEvent)| 윈도우가 활성화 윈도우로 설정되어 활성화될때|
+|| windowDeactivated(WindowEvent)| 활성화 상태의 윈도우가 비활성화될때|
+| AdjustmentListener| adjustmentValueChanged(AdjustmentEvent)| 스크롤바를 움직였을때|
+| ComponentListner| componentHidden(ComponentEvent)| 컴포넌트가 보이지 않는 상태로 될 때|
+|| componentShown(ComponentEvent)| 컴포넌트가 보이는 상태로 될 때|
+|| componentReized(ComponentEvent)| 컴포넌트의 크기가 변경될 때|
+|| componentMoved(ComponentEvent)| 컴포넌트의 위치가 변경될 때|
+| ContainerListener | componentAdded(ContainerEvent)| 컴포넌트가 컨테이너에 추가될 때|
+|  | componentRemoved(ContainerEvent)| 컴포넌트가 컨테이너에서 삭제될 |
+	
 	
 	
 </div>
