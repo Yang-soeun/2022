@@ -2373,6 +2373,46 @@ URL opinion = new URL(homePage, "opinion/editorial.htm");
 | ContainerListener | componentAdded(ContainerEvent)| 컴포넌트가 컨테이너에 추가될 때|
 |  | componentRemoved(ContainerEvent)| 컴포넌트가 컨테이너에서 삭제될 |
 	
+##### 이벤트 리스너를 작성하는 다양한 방법
+방법 1) 독립 클래스로 작성
+	- 이벤트 리스너를 완전한 클래스로 작성
+방법 2) 내부 클래수(inner class)로 작성
+방법 3) 익명 클래스(anonymous class)로 작성
+	
+##### 독립 클래스로 리스너 작성
+``` JAVA
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+
+public class IndepClassListemer ectends JFrame {
+	IndepClassListener() {
+		setTitle("Action 이벤트 리스너 작성");
+		setLayout(new FlowLayout());
+		setDefaultCloseOperation(Jframe.EXIT_ON_CLOSE);
+		setSize(300, 150);
+		setVisible(true);
+		HButton btn = new JButton("Action");
+		MyAvtionListener listener = new MyActionListener();
+		btn.addActionListener(listener);
+		add(btn);
+	}
+	public static void main(String[] arg) {
+		new IndepClssListner();
+	}
+}
+//독립된 클래스로 Action 이벤트 핸들러 작성
+// 이 클래스를 별도의 MyActionListener.java 파일로 작성하여도 됨
+clss MyActionListener implements ActionListener{
+	public void actionPerformed(ActionEvent e) {
+		JButton b = (JButton)e.getsource();
+		if (b.getText().equals("Actions"))
+			b.setText("액션");
+		else
+			b.setText("Action");
+	}
+}
+```
 	
 	
 </div>
