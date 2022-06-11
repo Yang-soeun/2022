@@ -2385,7 +2385,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 
-public class IndepClassListemer ectends JFrame {
+public class IndepClassListener extends JFrame {
 	IndepClassListener() {
 		setTitle("Action 이벤트 리스너 작성");
 		setLayout(new FlowLayout());
@@ -2403,7 +2403,7 @@ public class IndepClassListemer ectends JFrame {
 }
 //독립된 클래스로 Action 이벤트 핸들러 작성
 // 이 클래스를 별도의 MyActionListener.java 파일로 작성하여도 됨
-clss MyActionListener implements ActionListener{
+class MyActionListener implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton)e.getsource();
 		if (b.getText().equals("Actions"))
@@ -2413,7 +2413,6 @@ clss MyActionListener implements ActionListener{
 	}
 }
 ```
-	
 	
 </div>
 </details>
