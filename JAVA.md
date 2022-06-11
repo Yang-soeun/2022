@@ -2413,6 +2413,46 @@ class MyActionListener implements ActionListener{
 	}
 }
 ```
+
+
+##### 내부 클래스로 리스너 작성
+	
+``` JAVA
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+
+public class InnerClassListener extends JFrame {
+	InnerClassListener() {
+		setTitle("Action 이벤트 리스너 작성");
+		setLayout(new FlowLayout());
+		setDefaultCloseOperation(Jframe.EXIT_ON_CLOSE);
+		setSize(300, 300);
+		setVisible(true);
+		HButton btn = new JButton("Action");
+		btn.addActionListener(new MyActionListener());
+		add(btn);
+	}
+	//Action 이벤트 리스너를 내부 클래스로 작성
+	//private으로 선언하여 InnerClassListener의 외부에서 리스너를 사용할 수 없게 할 수 있음
+	private class MyActionListener implements ActionListener{
+	public void actionPerformed(ActionEvent e) {
+		JButton b = (JButton)e.getsource();
+		if (b.getText().equals("Actions"))
+			b.setText("액션");
+		else
+			b.setText("Action");
+
+		//InnerClassListener의 멤버나 JFrame의 멤버를 호출할 수 있음
+		//리스너에서 InnerClassListener의 멤버에 대한 접근이 용이함.
+		setTitle(b.getText());//JFrame.setTitle() 호출
+		}
+	}
+	public static void main(String [] args){
+	new InnerClassListner();
+	}
+}
+```
 	
 </div>
 </details>
