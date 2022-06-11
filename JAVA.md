@@ -2266,7 +2266,7 @@ URL opinion = new URL(homePage, "opinion/editorial.htm");
 - OS로부터 전달된 이벤트 정보를 기반으로 JVM이 자동 생성
 - 이벤트가 발생한 컴포넌트에 등록된 이벤트 리스너로 전달됨
 	
-#### 이벤트 갹체에 포함된 정보
+#### 이벤트 객체에 포함된 정보
 ##### 이벤트 객체가 포함하는 정보
 - 이벤트 종류
 - 이벤트 소스
@@ -2374,10 +2374,13 @@ URL opinion = new URL(homePage, "opinion/editorial.htm");
 |  | componentRemoved(ContainerEvent)| 컴포넌트가 컨테이너에서 삭제될 |
 	
 ##### 이벤트 리스너를 작성하는 다양한 방법
-방법 1) 독립 클래스로 작성
+	
+방법 1️⃣) 독립 클래스로 작성
 	- 이벤트 리스너를 완전한 클래스로 작성
-방법 2) 내부 클래수(inner class)로 작성
-방법 3) 익명 클래스(anonymous class)로 작성
+	
+방법 2️⃣) 내부 클래수(inner class)로 작성
+	
+방법 3️⃣) 익명 클래스(anonymous class)로 작성
 	
 ##### 독립 클래스로 리스너 작성
 ``` JAVA
