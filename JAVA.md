@@ -2471,6 +2471,46 @@ new 익명 클래스의 수퍼클래스이름(생성자의 인자들){
 	
 	- ActionListener를 구현하는 익명의 이벤트 리스너 작성 예
 	
+##### 익명 클래스로 이벤트 리스너 작성
+
+``` JAVA
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+
+public class AnonymousClassListener extends JFrame {
+	AnonymousClassListener() {
+		setTitle("Action 이벤트 리스너 작성");
+		//setLayout(new FlowLayout());
+		setDefaultCloseOperation(Jframe.EXIT_ON_CLOSE);
+		setLayout(new FlowLayout());
+		setSize(300, 300);
+		setVisible(true);
+		HButton btn = new JButton("Action");
+		//btn.addActionListener(new MyActionListener());
+		add(btn);
+
+		btn.addActionListener(new ActionListener()){
+		public void actionPerformed(ActionEvent e){
+				JButton b = (JButton)e.getSource();
+				if(b.gettext().equals("Action"))
+					b.setText("액션");
+				else
+					b.setText("Action");
+					//AnonymousClassListener의 멤버나
+					//JFrame의 멤버를 호출할 수 있음
+					setTitle(b.getText());
+			}
+		}
+	public static void main(String [] args){
+	new AnonymousClassListner();
+	}
+}
+```
+	
+- 간단한 리스너의 경우 익명 클래스 사용 추천.
+- 메소드의 개수가 1, 2개인 리스너(ActionListener, ItemListener)에 대해 주로 사용
+	
 ##### MouseEvent MouseListener, MouseMotionListener
 - Mouse 이벤트
 	- 사용자의 마우스 조작에 따라 발생하는 이벤트
