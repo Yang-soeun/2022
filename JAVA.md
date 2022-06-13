@@ -2471,6 +2471,20 @@ new 익명 클래스의 수퍼클래스이름(생성자의 인자들){
 	
 	- ActionListener를 구현하는 익명의 이벤트 리스너 작성 예
 	
+##### MouseEvent MouseListener, MouseMotionListener
+- Mouse 이벤트
+	- 사용자의 마우스 조작에 따라 발생하는 이벤트
+	
+| Mouse 이벤트가 발생하는 경우 | 리스너의 메소드 | 리스너 |    
+| :---: | :---: | :----: | 
+| 마우스가 컴포넌트 위에 올라갈 때 | void mouseEntered(MouseEvent e) | MouseListener |
+| 마우스가 컴포넌트에서 내려올 때 | void mouseExited(MouseEvent e) | MouseListener |
+| 마우스 버튼이 눌러졌을 때|  void mousePressed(MouseEvent e)| MouseListener |
+| 눌러진 버튼이 떼어질 때|   void mouseRelease(MouseEvent e)| MouseListener |
+| 마우스가 컴포넌트를 클릭하였을때| void mouseClicked(MouseEvent e)| MouseListener |
+| 마우스가 드래그 되는 동아 | void mouseDragged(MouseEvent e) | MouseMotionListener |
+| 마우스가 움직이는 동안| void mousMoved(MouseEvent e)|MouseMotionListener |
+
 	
 </div>
 </details>
