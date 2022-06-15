@@ -2525,6 +2525,40 @@ public class AnonymousClassListener extends JFrame {
 | 마우스가 드래그 되는 동아 | void mouseDragged(MouseEvent e) | MouseMotionListener |
 | 마우스가 움직이는 동안| void mousMoved(MouseEvent e)|MouseMotionListener |
 
+##### MouseEvent로부터 얻을 수 있는 정보
+- 마우스 포인터의 위치
+	- int getx(), int getY()
+	- Point getPoint()
+
+``` JAVA
+	public void mousePressed(MouseEvent e){
+	int x = e.getX();
+	int y = e.getY();
+	}
+```
+	
+- 입력된 마우스 버튼
+	- short getButton()
+
+``` JAVA
+	public void mousePressed(MouseEvent e){
+		if(e.getButton() == MouseEvent.BUTTON1)
+			system.out.println("Left Button Pressed");
+	}	
+```
+	
+- 마우스 클릭 횟수
+	- int getClickCount()
+	
+``` JAVA
+	public void mouseClicked(MouseEvent e){
+		if(e.getClickCount() == 2)
+		//더블클릭을 처리하는 루틴
+	}
+```
+
+- 팝업 메뉴 클릭
+	- boolean inPoppupTrigger()
 	
 </div>
 </details>
