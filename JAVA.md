@@ -2562,3 +2562,37 @@ public class AnonymousClassListener extends JFrame {
 	
 </div>
 </details>
+	
+<details>
+
+<summary> ✏ 그래픽 </summary>
+<div markdown="1">
+	
+##### 스윙 컴포넌트 그리기
+- 스윙의 기본 철학
+	- 모든 컴포넌트는 자신의 모양을 스스로 그린다.
+	- 컨테이너는 자신을 그린 후 자식들에게 그리기 지시
+	
+- public void paintcomponent(Graphics g)
+	- 스윙 컴포넌트가 자신의 모양을 그리는 메소드
+	- JComponent의 메소드
+		- 모든 스우잉 컴포넌트가 이 메소드를 가지고 있음
+	- 컴포넌트가 그려져야 하는 시점마다 호출
+		- 크기가 변경되거나, 위치가 변경되거나 컴포넌트가 가려졌던 것이 사라지는 등
+- Graphics 객체
+	- java.awt.Graphics
+	- 컴포넌트를 위한 그래픽 컨텍스트를 가지는 객체
+		- 그리기에 필요한 모든 정보와 메소드 제공
+		- 색 지정, 도형 그리기, 클리핑, 이미지 그리기 등을 위한 메소드 제공
+- 사용자가 원하는 모양을 그리고자 할 때
+	- paintComponent(Graphic g)를 오버라이딩하여 재작성
+	
+	```JAVA
+	public void paintComponent(Graphics g){
+		super.paintComponent(g);
+	//... 필요한 그리기 코드 작성
+	}
+	```
+	
+</div>
+</details>
