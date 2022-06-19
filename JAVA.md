@@ -2594,5 +2594,17 @@ public class AnonymousClassListener extends JFrame {
 	}
 	```
 	
+##### Graphics
+- Graphics의 기능
+	- 색상 선택하기
+	- 문자열 출력
+	- 도형 그리기
+	- 도형 칠하기
+	- 이미지 출력
+	- 클리핑
+- 문자열 그리기를 위한 Graphics 메소드
+	- void drawString(String str, int x, int y)
+		- str 문자열을 (x, y) 영역에 출력한다. 이때 컨텍스트 내의 현재 색과 현재 폰트로 출력한다.
+	
 </div>
 </details>
