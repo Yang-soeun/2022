@@ -2606,5 +2606,50 @@ public class AnonymousClassListener extends JFrame {
 	- void drawString(String str, int x, int y)
 		- str 문자열을 (x, y) 영역에 출력한다. 이때 컨텍스트 내의 현재 색과 현재 폰트로 출력한다.
 	
+##### Color와 Font 클래스
+
+- color 
+	- java.awt.Color,
+	- 하나의 색을 표현하는 클래스
+	- Red, Green, Blue의 3성분으로 구성되며 각 성분의 크기는 0~255(8비트)
+- 생성자
+	- Color(int r, int g, int b)
+	- red(r), green(g). blue(b) 값, sRGB 색 생성
+		- new Color(255, 0, 0);//완전 빨강색
+	- Color(int rgb)
+		- rgb  정수값은 총 32비트 중 하위 24비트만이 유효하고 0x00rrggbb로 표현된다.
+		- 하위 8비트는 blue, 그 다음 상위 8비트는 green, 그 다음 비트는 blue 성분을 표시한다.
+		- new Color(0x0000ff00); //완전 초록
+	- 다른 생성 방법
+		- Color.BLUE 등의 static 상수 활용
+	
+```
+	Graphics g;
+	g.setColor(new Color(255, 0, 0)); // 빨간색을 그래픽 색으로 설정
+	g.setColor(new Color(0x0000ff00)); //초록색을 그래픽 색으로 설정
+	g.setColor(Color.YELLOW); //노란색을 그래픽 색으로 설정
+```
+	
+- Font
+	- java.awt.Font, 폰트를 표현하는 클래스
+- 생성자
+	- Font(String fontFace, int style, int size)
+		- fontFace는 "고딕체", "Arial" 등
+		- style은 Font.BOLD, Font.ITALIC, Font.PLAIN 셋 중 하나
+		- size는 픽셀 단위의 크기
+	
+- Graphics 객체에서 색상과 폰트 설정
+	- void setColor(Color color)
+		- 칠할 색을 color로 지정
+	- void setFont(Font font)
+		- 폰트를 font로 지정
+	
+```
+	Graphics g;
+	Font f = new Font("Arial", Font.ITALIC, 30);
+	g.setFont(f);
+	g.setColor(Color.RED);
+	g.drawString("How much", 30, 30);
+```
 </div>
 </details>
