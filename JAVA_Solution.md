@@ -591,19 +591,3 @@ a < b (좌측 값이 작은 경우) 음수
 
  </div>
 </details>
-
-<details>
-
-<summary> 📕 level_3 </summary>
-<div markdown="1">
-  
- </div>
-</details>
-
-<details>
-
-<summary> 📘 level_4 </summary>
-<div markdown="1">
-  
- </div>
-</details>
