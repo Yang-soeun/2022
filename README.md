@@ -230,7 +230,226 @@ default -> "에러";
 
 - 문자열 리터럴을 바로 입력해 객체를 생성할 때 같은 문자열끼리 객체를 공유 → 메모리 효율성 때문 ex) String str = “HELLO”;
 
-
-  
 </details>
 
+<details>
+
+<summary> ✏ 06/25 </summary>
+<div markdown="1">
+
+![https://blog.kakaocdn.net/dn/cHhmbr/btqwUDHGMOV/usCxTFLWrG0iSkJzqdK8WK/img.png](https://blog.kakaocdn.net/dn/cHhmbr/btqwUDHGMOV/usCxTFLWrG0iSkJzqdK8WK/img.png)
+
+**Map<K, V>**
+
+- Key와 Value 한 쌍(엔트리)으로 데이터를 저장
+- Key는 중복 저장 불가, Value는 중복 가능
+    - 데이터를 구분하는 기준이 Key이기 때문에 동일한 Key가 2개 이상이라면 map.get(중복키)와 같이 실행할 때 어떤 값을 가져올지 결정할 수 없다.
+
+**Map<K, V> 인터페이스의 주요 메서드**
+
+| 구분 | 리턴 타입 | 메서드 명 | 기능 |
+| --- | --- | --- | --- |
+| 데이터 추가 | V | put(K key, V value) | 입력 매개변수의 (Key, Value)를 Map 객체에 추가 |
+| 데이터 변경 | V | replace(K key, V Value) | Key에 해당하는 값을 value 값으로 변경(단, 해당 key가 없으면 null 리턴) |
+|  | boolean | replace(K keym V oldValue, V newValue) | (Key, oldValue) 의 쌍을 갖는 엔트리에서 oldValue를 newValue로 변경(단, 해당 엔트리가 없으면 false 반환) |
+| 데이터 정보 추출 | V | get(Object key) | 매개변수의 Key값에 해당하는 oldValue를 리턴 |
+|  | boolean | containsKey(Object key) | 매개변수의 Key 값이 포함돼 있는지 여부 |
+|  | boolean | containsValue(Object value) | 매개변수의 value 값이 포함돼 있는지 여부 |
+|  | Set<K> | KeySet() | Map 데이터들 중 Key들만 뽑아 Set 객체로 리턴 |
+|  |  Set<Entry<K, V>> | entrySet() | Map의 각 엔트리들을 Set 객체로 담아 리턴 |
+|  | int | size() | Map에 포함된 엔트리의 개수 |
+| 데이터 삭제 | V | remove(Object key) | 입력매개변수의 Key를 갖는 엔트리 삭제(단, 해당 Key가 없으면 아무런 동작을 하지 않음) |
+|  | boolean | remove(Object key, Object value) | 입력매개변수의(key, value)를 갖는 엔트리 삭제(단, 해당 엔트리가 없으면 아무런 동작을 하지 않음) |
+|  | void | clear() | Map 객체 내의 모든 데이터 삭제 |
+
+**HashMap<K, V>**
+
+- key 값의 중복을 허용하지 않는다.
+    - Key값의 중복 여부를 확인하는 메커니즘은 HashSet<E> 때와 완벽히 동일
+        - 두 key의 객체의 hashCode() 값이 같고, equals() 메서드가 true를 리턴하면 같은 객체로 인식
+- key 값을 HashSet<E>로 구현한 Map<K, V> 객체
+- Key 값이 HashSet<E>의 특성이 있으므로 입출력 순서는 동일하지 않을 수 있다.
+
+**Hashtable<K, V>**
+
+- HashMap<K, V> 구현 클래스가 단일 쓰레드에 적합한 반면, Hashtable은 멀티 쓰레드에  안정성을 가진다.
+- 접근할 때도 모든 내부의 주요 메서드가 동기화 메서드로 구현돼 있으므로 멀티 쓰레드에서도 안전하게 동작한다.
+- 멀티 쓰레드에도 안전하다는 특징 말고는 완벽히 HashMap<K, V>와 동일한 특징을 가진다.
+
+**LinkedHashMap<K, V>**
+
+- LinkedListHashMap<K, V>는 HashMap<K, V>의 기본적인 특성에 입력 데이터의 순서 정보를 추가로 갖고 있는 컬렉션이다.
+- 항상 입력된 순서대로 출력된다.
+
+**TreeMap<K, V>**
+
+- Map<K, V>의 기본 기능에 정렬 및 검색 기능이 추가된 컬렉션
+- 입력 순서와 관계없이 데이터를 Key값의 크기 순으로 저장
+- Key 객체는 크기 비교의 기준을 갖고 있어야 한다.
+- SortedMap<K, V> 와 NavigableMap<K, V> 인터페이스의 자식 클래스다.
+
+**Stack<E>**
+
+- 컬렉션 중 유일하게 클래스이므로 자체적으로 객체를 생성할 수 있다.
+- LIFO 자료구조
+- Vector<E>의 모든 기능을 포함하고 있으며, 추가로 LIFO를 위한 5개의 메서드가 추가됐다
+    - 추가된 기능을 사용하려면 Stack<E> 타입으로 선언해야한다.
+    
+
+**Stack 클래스의 주요 메서드**
+
+| 구분 | 리턴 타입 | 메서드 명 | 기능 |
+| ---- | --- | --- | --- |
+| 데이터 추가 | E | push(E item) | 매개변수인 item을 Stack<E>에 추가 |
+| 데이터  확인 | E | peek() | 가장 상위에 있는 원소값 리턴(데이터 변화 없음) |
+| 데이터 위치 검색 | int | search(Object o) | Stack<E> 원소의 위칫값을 리턴(맨 위의 값이 1, 아래로 내려갈수록 1 증가) |
+| 데이터 추출 | E | pop() | 최상위 데이터 꺼내기(데이터의 개수 감소) |
+| empty 여부 검사 | boolean | empty() | Stack<E> 객체가 비어 있는지 여부를 리턴 |
+
+**Queue<E>**
+
+- LinkedList<E> 가 Queue<E> 인터페이스의 구현 클래스
+- FIFO 자료구조
+- 입력 순서와 출력 순서가 동일
+
+**Queue<E>의 주요 메서드**
+
+| 구분 | 메서드 | 리턴 타입 | 메서드 명 | 기능 |
+| --- | --- | --- | --- | --- |
+| 예외 처리 기능 미포함 메서드 | 데이터 추가 | boolean | add(E item) | 매개변수 item 을 Queue에 추가 |
+|  | 데이터 확인 | E | element() | 가장 상위에 있는 원소값 리턴
+(데이터가 없는 경우 NoSuchElementException 발생) |
+|  | 데이터 추출 | E | remove() | 가장 상위에 있는 원소값을 꺼내기(데이터가 없는 경우 NoSuchElementException 발생) |
+| 예외 처리 기능
+포함 메서드 | 데이터 추가 | boolean | offer(E item) | 매개변수인 item을 Queue에 추가 |
+|  | 데이터 확인 | E | peek() | 가장 상위에 있는 원소값 리턴(데이터가 하나도 없을 때 null 리턴) |
+|  | 데이터 추출 | E | poll() | 가장 상위에 있는 원소값을 꺼내기(데이터가 없을 때 null 리턴) |
+- 6개의 메서드 중 add() 메서드만 java.util.Collection 인터페이스에 정의돼  있고, 나머지는 모두 java.util.Queue 인터페이스에 정의돼 있다.
+
+**Lambda**
+
+람다가 나온 이유?
+
+- 자바는 객체지향형 프로그래밍에서 함수는 항상 클래스 내부에 메서드로 존재해야 하고, 메서드를 사용하기 위해서는 클래스의 객체를 먼저 생성한 후에 메서드를 호출해야 한다.
+- 하지만 이는 외부에 어떤 기능을 가진 함수를 정의하고, 이 함수를 호출함으로써 기능을 수행하는 본래의 함수형 프로그래밍과는 거리가 있다.
+- 이를 해결하기 위해 나온 방법이 람다식이다.
+
+**객체 지향 구조 내에서 람다식 적용**
+
+함수형 인터페이스 → 단 하나의 추상 메서드만을 포함하는 인터페이스
+
+```java
+@FunctionalInterface //메서드가 2개 이상 만들면 에러 발생시켜줌 
+public interface A {
+	void abc();
+}
+```
+
+```java
+public class OOPvsFP {
+	public static void main(String[] args) {
+		//객체지향 프로그래밍 문법
+		A a1 = new B();
+		a1.abc();
+		
+		// 객체지향 프로그래밍 문법(익명 이너 클래스 사용)
+		A a2 = new A() {
+			@Override
+			public void abc() {
+				System.out.println("메서드 내용 2");
+			}
+		};
+		
+		//함수형 프로그래밍 문법(람다식)
+		a2.abc();
+		// 타겟타입은 함수형 인터페이스만이 타겟 타입이 될 수 있다.
+		A a3 = () -> {System.out.println("메서드 내용 3");};
+		a3.abc();
+	}
+}
+```
+
+- 람다식은 익명 이너 클래스의 축약된 형태이다.
+- 람다식은 내부 메서드 명을 생략하므로 구현해야 할 추상 메서드가 2개 이상이라면 어떤 메서드를 구현할 것인지 구분할 수 없기 때문에 1개의 메서드만 정의된 함수형 인터페이스만이 타겟 타입이 될 수 있다.
+
+**람다식의 기본 문법 및 약식 표현**
+
+- 구현된 추상 메서드를 람다식으로 표현할 때는 메서드명 이후의 소괄호와 중괄호만 차례대로 포함하며, 이들 사이에는 람다식 기호인 화살표 → 가 들어간다.
+- 메서드를 람다식으로 표현할 때는 (소괄호) → {중괄호} 의 형태만 기억하자
+- **람다식의 약식 표현**
+
+```java
+**1. 중괄호 안의 실행문이 1개일 때 중괄호 생략 가능**
+A a1 = () -> {System.out.println("테스트");};
+A a2 = () -> System.out.println("테스트");
+```
+
+```java
+**2. 매개변수 타입의 생략이 가능하고, 매개변수가 1개일 때 () 생략 가능**
+A a1 = (int a) - > {...}
+A a2 = (a) -> {....}
+A a3 = a -> {....} //소괄호가 생략될 때는 매개 변수 타입을 반드시 생략
+```
+
+```java
+**3. return문 하나만으로 이뤄져 있을 떄는 return도 생략 가능**
+A a1 = (int a, int b) -> {return a + b};
+A a2 = (int a, int b) -> a + b; //return을 생략할 때는 반드시 중괄호도 생략해야함
+```
+
+**메서드 참조**
+
+- 이미 구현을 완료된 메서드 참조
+    - 인스턴스 메소드 참조
+    - 정적 메소드 참조
+
+**정의 돼 있는 인스턴스 메서드 참조**
+
+> 클래스 객체 참조 변수 :: 인스턴스 메서드명
+> 
+
+**정의돼 있는 정적 메서드 참조**
+
+> 클래스명 :: 정적 메서드명
+> 
+
+**첫번째 매개변수로 전달된 객체의 인스턴스 메서드 참조**
+
+> 클래스명 :: 인스턴스 메서드명
+> 
+
+```java
+interface A{
+	void abc(B b, int k);
+}
+class B{
+	void bcd(int k){
+		System.out.println(k);
+	}
+}
+
+//인터페이스 A의 abc메소드를 호출하는 것은 첫번째 인자로 받는 B의 bcd를 호출하는 것과 같다.
+//람다식
+A a = (b, k){
+	b.bcd(k);
+};
+```
+
+**생성자 참조 == new 참조**
+
+- 배열 객체 생성자
+    - 함수형 인터페이스에 포함된 추상 메서드가 배열의 크기를 입력매개변수로 하며, 특정 배열 타입을 리턴할
+
+> 배열 타입 :: new
+A a = (len) → new int[len]; //람다식
+A a = int[]::new
+> 
+- 클래스 객체 생성자
+    - 인터페이스의 추상 메서드가 클래스 타입의 객체를 리턴할 때
+
+> 클래스명 :: new
+A a () → new B(); //람다식
+A a = B :: new();
+> 
+
+</details>
