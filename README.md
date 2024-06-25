@@ -317,11 +317,9 @@ default -> "에러";
 | 구분 | 메서드 | 리턴 타입 | 메서드 명 | 기능 |
 | --- | --- | --- | --- | --- |
 | 예외 처리 기능 미포함 메서드 | 데이터 추가 | boolean | add(E item) | 매개변수 item 을 Queue에 추가 |
-|  | 데이터 확인 | E | element() | 가장 상위에 있는 원소값 리턴
-(데이터가 없는 경우 NoSuchElementException 발생) |
+|  | 데이터 확인 | E | element() | 가장 상위에 있는 원소값 리턴(데이터가 없는 경우 NoSuchElementException 발생) |
 |  | 데이터 추출 | E | remove() | 가장 상위에 있는 원소값을 꺼내기(데이터가 없는 경우 NoSuchElementException 발생) |
-| 예외 처리 기능
-포함 메서드 | 데이터 추가 | boolean | offer(E item) | 매개변수인 item을 Queue에 추가 |
+| 예외 처리 기능 포함 메서드 | 데이터 추가 | boolean | offer(E item) | 매개변수인 item을 Queue에 추가 |
 |  | 데이터 확인 | E | peek() | 가장 상위에 있는 원소값 리턴(데이터가 하나도 없을 때 null 리턴) |
 |  | 데이터 추출 | E | poll() | 가장 상위에 있는 원소값을 꺼내기(데이터가 없을 때 null 리턴) |
 - 6개의 메서드 중 add() 메서드만 java.util.Collection 인터페이스에 정의돼  있고, 나머지는 모두 java.util.Queue 인터페이스에 정의돼 있다.
