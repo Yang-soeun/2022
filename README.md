@@ -451,3 +451,143 @@ A a = B :: new();
 > 
 
 </details>
+
+<details>
+
+<summary> ✏ 06/26 </summary>
+<div markdown="1">
+
+### **리플렉션 (Reflection) 이란?**
+
+**리플렉션이란?**
+
+- 구체적인 클래스 타입을 알지 못하더라도 그 클래스의 메서드, 타입, 변수들에 접근할 수 있도록 해주는 자바 API 를 말한다.
+
+- 힙 영역에 로드된 Class 타입의 객체를 통해 클래스의 인스턴스를 생성할 수 있도록 지원하고, 인스턴스 필드와 메서드를 접근 제어자와 상관없이 사용할 수 있도록 지원한다.
+
+**리플렉션을 사용하는 경우**
+
+- 동적으로 클래스를 사용해야할 때
+- 작성 시점에는 어떠한 클래스를 사용 해야할지 모르지만 런타임 시점에 가져와 실행해야 하는 경우
+
+**리플렉션을 사용하여 가져올 수 있는 정보**
+
+- Class
+- Constructor
+- Method
+- Field
+
+리플렉션에 대한 자세한 실습 과정은 아래 블로그에 작성했다~!
+
+https://soeundid.tistory.com/11
+
+----
+
+### 자바 입출력
+
+**자바 입출력(IO)**
+
+- 바이트 기반 스트림 - 이미지, 동영상, 문자
+    - InputStream
+    - OuputStream
+- 문자 기반 스트림 - 오로지 문자
+    - Reader
+    - Writer
+
+**System.getProperty() 메서드로 가져올 수 있는 다양한 값**
+
+- `getProperty(String key)` 메서드는 자바 가상 머신이 동작할 때 적용되는 시스템 속성값을 가져온다.
+- 속성값은 Key와 Value로 구성
+
+| Key | Value |
+| --- | --- |
+| java.version | Java 버전 |
+| java.vendor | Java 공급자 |
+| java.vendor.url | Java 공급자의 주소 |
+| java.home | Java가 위치한 디렉터리 |
+| java.class.version | Java 클래스 버전 |
+| java.class.path | Java 클래스의 경로 |
+| user.name | 사용자 계정 |
+| user.home | 사용자 홈 디렉터리 |
+| user.dir | 현재 디렉터리 |
+| os.name | 운영체제 이름 |
+| os.arch | 운영체제 아키텍처 |
+| os.version | 운영체제 버전 정보 |
+| file.separator | 파일 구분 문자 |
+| path.separator | 경로 구분 문자 |
+| line.separator | 행 구분 문자 |
+
+----
+
+### **문자셋 이용하기**
+
+**아스키 코드**
+
+- 미국 정보 교환 표준 부호의 약자로, 영문 알파벳, 숫자, 특수 기호, 제어 코드로 구성된 코드표이다.
+- 어느 나라의 언어를 표현하는 문자 셋이든 제어 문자, 영문자, 숫자, 특수 기호는 공통으로 사용하기 때문에 모든 문자 셋의 하위 비트에는 아스키 코드를 중복해 포함하고 있다.
+
+**유니코드**
+
+- 하나의 시스템에서는 하나의 문자 셋만 사용할 수 있기 때문에 동시에 여러 나라의 문자를 혼용할 수 없기 때문에 이러한 문제를 해결하기 위한 방법이 유니코드이다.
+- 하나의 문자 셋 안에 전 세계 문자를 통합한 문자 셋으로, 다국어 문자를 동시에 표현할 수 있다.
+
+**문자열 → byte[] 변환 및 byte[] → 문자열 변환 방법**
+
+| 동작 | 방법 | 의미 |
+| --- | --- | --- |
+| 문자열 → byte[] | 문자열.getBytes(문자 셋) | 문자 셋을 기준으로 문자열을 byte[]로 분해하라 |
+| byte[] → 문자열 | new String(byte[], 문자 셋) | 문자 셋을 기준으로 byte[]  문자열을 조합하라. |
+
+**한글 전용 문자셋 - EUC-KR, MS949**
+
+**`EUC-KR`** (Extended Unix Code - Korean)
+
+- KS 완성형(한글 문자 2,350자 정도면 표현) + ASCII, 나머지 8,822자는 누락 ex) 봵
+- 한글 웹 페이지 표준 문자셋
+- 아스키(영문, 숫자, 특수문자)는 1byte, 이외의 문자(한글, 한자)는 2byte
+
+**`MS949`**
+
+- Microsoft에서 도입해 윈도우 운영체제에서 기본으로 사용되는 한글 완성형 문자셋
+- EUC_KR + 누락된 8,822자
+- EUC_KR과 호환 가능하지만, 웹 표준 문자셋이 아니기 때문에 한글 웹 페이지에서 사용할때는 EUC_KR을 사용해야 한다.
+
+**대표적인 유니코드 문자셋 - UTF-16, UTF-8**
+
+**`UTF-16`**
+
+- 영문을 포함해서 모든 문자를 2byte로 인코딩
+    - 자바에서 char 자료형(2byte)를 저장하기 위해 사용
+- byte[] 배열로 분해할 경우 0이 나오는 문제점.
+
+**`UTF-8`**
+
+- 가변 길이 문자 인코딩
+    - 영문, 숫자 등 아스키 코드는 1byte, 한글 3byte
+- 대부분의 웹 서버, 데이터베이스, 리눅스, 맥 시스템 등이 기본 인코딩 방식
+- UTF-8로 변환된 바이트 값에 0이 포함되지 않도록 설계
+    - 1byte - 7bit, 2byte - 11bit, 3byte - 16it 만을 문자 저장에 사용
+
+**Charset 클래스로 문자셋 이용**
+
+| 메서드 | 동작 |
+| --- | --- |
+| static Charset defaultCharset() | 현재 설정돼 있는 기본 값 문자 셋 리턴(미 설정했을 때 기본 문자 셋) |
+| static Charset forName(String charsetName) | 매개변수로 넘어온 charsetName의 문자 셋 리턴 (지원하지 않는 문자 셋 일 때는 UnsupportedCharsetException 실행 예외 발생) |
+
+----
+
+### byte 단위 입출력
+
+![image](https://github.com/Yang-soeun/JAVA/assets/87464750/78e4cafc-0c76-4638-91b9-81edad0ab2ba)
+
+
+**자바의 입출력**
+
+- byte 단위 입출력 → `InputStream, OutputStream` 추상 클래스
+    - 전송되는 데이터는 그림 파일, 텍스트, 동영상이든 상관없다 → 모든 데이터는 byte들의 모음이기 때문이다.
+- char 단위 입출력 → `Reader, Writer`추상 클래스
+    - 텍스트 전송에 특화된 방법
+
+
+</details>
